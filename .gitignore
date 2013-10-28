@@ -13,7 +13,8 @@ twentytwo/project.properties
 # Java class files
 *.class
 
-
+*.DS_Store
+.metadata
 
 # Local configuration file (sdk path, etc)
 local.properties
