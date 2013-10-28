@@ -14,6 +14,7 @@ twentytwo/project.properties
 *.class
 
 *.DS_Store
+.metadata
 
 # Local configuration file (sdk path, etc)
 local.properties
