@@ -17,9 +17,19 @@ public class MenuActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_menu);
 
-		// Creates an intent to transfer the user to the EnterNames screen.
-		Button enterButton = (Button) findViewById(R.id.shittyButton);
-		enterButton.setOnClickListener(new OnClickListener() {
+		// Creates an intent to transfer the user to the info and bio screen.
+		Button bioButton = (Button) findViewById(R.id.bioButton);
+		bioButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(mContext, BioActivity.class);
+				startActivity(intent);
+			}
+		});
+
+		// Creates an intent to transfer the user to the store activity.
+		Button storeButton = (Button) findViewById(R.id.storeButton);
+		storeButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(mContext, BioActivity.class);

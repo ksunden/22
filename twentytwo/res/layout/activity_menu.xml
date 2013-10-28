@@ -15,12 +15,21 @@
         android:text="@string/hello_world" />
 
     <Button
-        android:id="@+id/shittyButton"
+        android:id="@+id/bioButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
         android:layout_marginLeft="14dp"
         android:layout_toRightOf="@+id/textView1"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/storeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/bioButton"
+        android:layout_below="@+id/bioButton"
+        android:layout_marginTop="29dp"
         android:text="Button" />
 
 </RelativeLayout>
