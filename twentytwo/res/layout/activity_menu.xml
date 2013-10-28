@@ -9,10 +9,19 @@
     tools:context=".MenuActivity" >
 
     <Button
+        android:id="@+id/socialButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/storeButton"
+        android:layout_below="@+id/storeButton"
+        android:text="@string/social_button" />
+
+    <Button
         android:id="@+id/bioButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="14dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:text="@string/bio_button" />
 
     <Button
@@ -21,16 +30,22 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/bioButton"
         android:layout_below="@+id/bioButton"
-        android:layout_marginTop="29dp"
         android:text="@string/store_button" />
 
     <Button
         android:id="@+id/aboutUsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/storeButton"
-        android:layout_below="@+id/storeButton"
-        android:layout_marginTop="32dp"
+        android:layout_alignLeft="@+id/socialButton"
+        android:layout_below="@+id/socialButton"
         android:text="@string/about_button" />
+
+    <Button
+        android:id="@+id/resourcesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/aboutUsButton"
+        android:layout_below="@+id/aboutUsButton"
+        android:text="@string/resources_button" />
 
 </RelativeLayout>

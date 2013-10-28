@@ -37,12 +37,30 @@ public class MenuActivity extends Activity {
 			}
 		});
 
+		Button socialButton = (Button) findViewById(R.id.socialButton);
+		socialButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(mContext, BioActivity.class);
+				startActivity(intent);
+			}
+		});
+
 		// Creates an intent to transfer the user to the 'about us' activity.
 		Button aboutUsButton = (Button) findViewById(R.id.aboutUsButton);
 		aboutUsButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(mContext, AboutUsActivity.class);
+				startActivity(intent);
+			}
+		});
+
+		Button resourcesButton = (Button) findViewById(R.id.resourcesButton);
+		resourcesButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(mContext, BioActivity.class);
 				startActivity(intent);
 			}
 		});

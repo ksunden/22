@@ -10,5 +10,7 @@
     <string name="bio_button">About Jordin</string>
     <string name="store_button">Merchandise</string>
     <string name="about_button">About Us</string>
+    <string name="resources_button">Resources</string>
+    <string name="social_button">Social Media</string>
 
 </resources>
