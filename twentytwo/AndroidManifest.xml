@@ -30,6 +30,10 @@
             android:name="tootoo.twentytwo.StoreActivity"
             android:label="@string/title_activity_store" >
         </activity>
+        <activity
+            android:name="tootoo.twentytwo.AboutUsActivity"
+            android:label="@string/title_activity_about_us" >
+        </activity>
     </application>
 
 </manifest>

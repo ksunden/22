@@ -6,5 +6,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_bio">About Jordin</string>
     <string name="title_activity_store">StoreActivity</string>
+    <string name="title_activity_about_us">AboutUsActivity</string>
+    <string name="bio_button">About Jordin</string>
+    <string name="store_button">Merchandise</string>
+    <string name="about_button">About Us</string>
 
 </resources>

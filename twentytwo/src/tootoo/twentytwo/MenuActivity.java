@@ -32,7 +32,17 @@ public class MenuActivity extends Activity {
 		storeButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(mContext, BioActivity.class);
+				Intent intent = new Intent(mContext, StoreActivity.class);
+				startActivity(intent);
+			}
+		});
+
+		// Creates an intent to transfer the user to the 'about us' activity.
+		Button aboutUsButton = (Button) findViewById(R.id.aboutUsButton);
+		aboutUsButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(mContext, AboutUsActivity.class);
 				startActivity(intent);
 			}
 		});
