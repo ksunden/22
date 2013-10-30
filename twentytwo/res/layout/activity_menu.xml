@@ -1,43 +1,72 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MenuActivity" >
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/mainscreen_mainrelativelayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
 
-    <Button
-        android:id="@+id/bioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/bio_button" />
+        <ImageView
+            android:id="@+id/mainscreen_logo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="Banner" />
 
-    <Button
-        android:id="@+id/storeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/store_button" />
+		<ScrollView
+		    android:id="@+id/mainscreen_mainscreenscrollview"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:layout_below="@+id/mainscreen_logo" >
 
-    <Button
-        android:id="@+id/aboutUsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/about_button" />
+		    <RelativeLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="10dp" >
 
-    <Button
-        android:id="@+id/socialButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/social_button" />
+            <Button
+                android:id="@+id/bioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_horizontal"
+                android:text="@string/bio_button" />
 
-    <Button
-        android:id="@+id/resourcesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/resources_button" />
+            <Button
+                android:id="@+id/storeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/bioButton"
+                android:layout_alignRight="@+id/bioButton"
+                android:layout_below="@id/bioButton"
+                android:text="@string/store_button" />
 
-</LinearLayout>
+            <Button
+                android:id="@+id/aboutUsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/storeButton"
+                android:layout_alignRight="@+id/storeButton"
+                android:layout_below="@id/storeButton"
+                android:text="@string/about_button" />
+            
+            <Button
+                android:id="@+id/socialButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/aboutUsButton"
+                android:layout_alignRight="@+id/aboutUsButton"
+                android:layout_below="@id/aboutUsButton"
+                android:text="@string/social_button" />
+            
+            <Button
+                android:id="@+id/resourcesButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/socialButton"
+                android:layout_alignRight="@+id/socialButton"
+                android:layout_below="@id/socialButton"
+                android:text="@string/resources_button" />
+			
+            </RelativeLayout>
+		</ScrollView>
+    </RelativeLayout>
+	
