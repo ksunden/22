@@ -1,12 +1,13 @@
 package tootoo.twentytwo;
 
-import android.os.Bundle;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v4.app.NavUtils;
-import android.annotation.TargetApi;
-import android.os.Build;
+import android.webkit.WebView;
 
 public class SocialActivity extends Activity{
     
@@ -16,6 +17,10 @@ public class SocialActivity extends Activity{
         setContentView(R.layout.activity_social);
         // Show the Up button in the action bar.
         setupActionBar();
+        
+        // "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"
+        
+        WebView wv = (WebView) findViewById(R.id.twitterWebview);
     }
     
     /**
