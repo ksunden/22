@@ -14,5 +14,6 @@
     <string name="social_button">Social Media</string>
     <string name="title_activity_social">SocialActivity</string>
     <string name="title_activity_resources">ResourcesActivity</string>
+    <string name="au_paragraph_1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam gravida tristique nunc, ut porta justo imperdiet nec. Suspendisse potenti. Morbi lorem massa, luctus sit amet sem non, vulputate vestibulum metus. Phasellus consequat at sem non auctor. Duis porttitor, tellus in pharetra dapibus, tortor est commodo libero, vitae tempus urna metus sit amet massa. Donec suscipit ultricies tincidunt. Cras sit amet auctor ipsum, non pharetra diam.</string>
 
 </resources>

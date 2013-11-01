@@ -3,7 +3,6 @@ package tootoo.twentytwo;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.TextView;
 
 public class AboutUsActivity extends Activity{
     
@@ -12,8 +11,15 @@ public class AboutUsActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
         
-        TextView tv = (TextView) findViewById(R.id.bodyText1);
-        tv.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam gravida tristique nunc, ut porta justo imperdiet nec. Suspendisse potenti. Morbi lorem massa, luctus sit amet sem non, vulputate vestibulum metus. Phasellus consequat at sem non auctor. Duis porttitor, tellus in pharetra dapibus, tortor est commodo libero, vitae tempus urna metus sit amet massa. Donec suscipit ultricies tincidunt. Cras sit amet auctor ipsum, non pharetra diam.");
+        // TODO seperate file thing
+        
+        // TextView tv = (TextView) findViewById(R.id.bodyText1);
+        
+        // inner part of listview as a sepratate
+        // use include fora seprate file
+        // in java add subviews
+        // have a database table
+        // rather
     }
     
     @Override
