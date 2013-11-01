@@ -34,6 +34,22 @@
             android:name="tootoo.twentytwo.AboutUsActivity"
             android:label="@string/title_activity_about_us" >
         </activity>
+        <activity
+            android:name="tootoo.twentytwo.SocialActivity"
+            android:label="@string/title_activity_social"
+            android:parentActivityName="tootoo.twentytwo.MenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="tootoo.twentytwo.MenuActivity" />
+        </activity>
+        <activity
+            android:name="tootoo.twentytwo.ResourcesActivity"
+            android:label="@string/title_activity_resources"
+            android:parentActivityName="tootoo.twentytwo.MenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="tootoo.twentytwo.MenuActivity" />
+        </activity>
     </application>
 
 </manifest>

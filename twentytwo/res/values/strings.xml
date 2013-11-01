@@ -12,5 +12,7 @@
     <string name="about_button">About Us</string>
     <string name="resources_button">Resources</string>
     <string name="social_button">Social Media</string>
+    <string name="title_activity_social">SocialActivity</string>
+    <string name="title_activity_resources">ResourcesActivity</string>
 
 </resources>

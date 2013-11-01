@@ -43,7 +43,7 @@ public class MenuActivity extends Activity{
         socialButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(mContext, BioActivity.class);
+                Intent intent = new Intent(mContext, SocialActivity.class);
                 startActivity(intent);
             }
         });
@@ -62,7 +62,7 @@ public class MenuActivity extends Activity{
         resourcesButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(mContext, BioActivity.class);
+                Intent intent = new Intent(mContext, ResourcesActivity.class);
                 startActivity(intent);
             }
         });
