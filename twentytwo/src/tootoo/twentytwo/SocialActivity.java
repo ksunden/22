@@ -1,5 +1,6 @@
 package tootoo.twentytwo;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
@@ -7,10 +8,12 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 public class SocialActivity extends Activity{
     
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -18,9 +21,10 @@ public class SocialActivity extends Activity{
         // Show the Up button in the action bar.
         setupActionBar();
         
-        // "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"
-        
         WebView wv = (WebView) findViewById(R.id.twitterWebview);
+        WebSettings webSettings = wv.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        wv.loadUrl("file:///android_asset/twitterchunk.html");
     }
     
     /**
