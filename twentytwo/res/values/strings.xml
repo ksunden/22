@@ -18,4 +18,6 @@
     <string name="org_title">Organization Title Name</string>
 	<string name="org_description">This is the organization description. Lorem ipsum dolor sit amet, consectetur adipscing elit.</string>
 	<string name="org_image_description">org_image</string>
+	<string name="about_us_title">About the Fund</string>
+	<string name="about_us_supported_orgs">Organizations We Support</string>
 </resources>
