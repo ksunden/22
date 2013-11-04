@@ -24,5 +24,9 @@
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
         android:text="@string/au_paragraph_1" />
+    
+    <ListView>
+        
+    </ListView>
 
 </RelativeLayout>
