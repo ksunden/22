@@ -3,6 +3,7 @@ package tootoo.twentytwo;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.ListView;
 
 public class AboutUsActivity extends Activity{
     
@@ -11,15 +12,13 @@ public class AboutUsActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
         
-        // TODO seperate file thing
+        ListItem list_item_data[] = new ListItem[] {new ListItem(R.drawable.ic_launcher, "Org 1", "1 Lorem Ipsum Dolor Sit Amet"), new ListItem(R.drawable.ic_launcher, "Org 2", "2 Lorem Ipsum Dolor Sit Amet"), new ListItem(R.drawable.ic_launcher, "Org 3", "3 Lorem Ipsum Dolor Sit Amet"), new ListItem(R.drawable.ic_launcher, "Org 4", "4 Lorem Ipsum Dolor Sit Amet")};
         
-        // TextView tv = (TextView) findViewById(R.id.bodyText1);
+        ListItemAdapter adapter = new ListItemAdapter(this, R.layout.about_us_row, list_item_data);
+        ListView lv = (ListView) findViewById(R.id.aboutUsListView);
+        lv.setAdapter(adapter);
         
-        // inner part of listview as a sepratate
-        // use include fora seprate file
-        // in java add subviews
-        // have a database table
-        // rather
+        // TODO Make the ListItems clickable
     }
     
     @Override

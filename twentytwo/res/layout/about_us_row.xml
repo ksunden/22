@@ -8,7 +8,6 @@
         android:id="@+id/orgImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher"
         android:padding="3dip"
         android:contentDescription="@string/org_image_description"
         />
@@ -23,19 +22,17 @@
         android:paddingBottom="2dip">
        
         <TextView 
-            android:id="@+id/sampleTitle"
+            android:id="@+id/orgTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/org_title"
             android:textStyle="bold"
             android:paddingBottom="3dip"
             />
         
         <TextView 
-            android:id="@+id/sampleDescription"
+            android:id="@+id/orgDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/org_description"
             />
     </LinearLayout> 
 </RelativeLayout>
