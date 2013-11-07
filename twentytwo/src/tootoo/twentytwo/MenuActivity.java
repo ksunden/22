@@ -39,6 +39,7 @@ public class MenuActivity extends Activity{
             }
         });
         
+        // Creates an intent to transfer the user to the social media activity.
         Button socialButton = (Button) findViewById(R.id.socialButton);
         socialButton.setOnClickListener(new OnClickListener() {
             @Override

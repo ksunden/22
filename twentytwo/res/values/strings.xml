@@ -15,5 +15,12 @@
     <string name="title_activity_social">SocialActivity</string>
     <string name="title_activity_resources">ResourcesActivity</string>
     <string name="title_activity_cart">Cart</string>
-
+    <string name="au_paragraph_1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam gravida tristique nunc, ut porta justo imperdiet nec. Suspendisse potenti. Morbi lorem massa, luctus sit amet sem non, vulputate vestibulum metus. Phasellus consequat at sem non auctor. Duis porttitor, tellus in pharetra dapibus, tortor est commodo libero, vitae tempus urna metus sit amet massa. Donec suscipit ultricies tincidunt. Cras sit amet auctor ipsum, non pharetra diam.</string>
+    <string name="org_title">Organization Title Name</string>
+	<string name="org_description">This is the organization description. Lorem ipsum dolor sit amet, consectetur adipscing elit.</string>
+	<string name="org_image_description">org_image</string>
+	<string name="about_us_title">About the Fund</string>
+	<string name="about_us_supported_orgs">Organizations We Support</string>
+	<string name="about_jordin_title">About Jordin Tootoo</string>
+	<string name="jb_paragraph_1">Lorem ipsum dolor sit amet, Hockey Canada, consectetur adipiscing elit. Aliquam, Hockey Canada gravida tristique nunc, ut porta justo, Hockey Canada imperdiet nec. Suspendisse potenti. Morbi lorem, Hockey Canada massa, Hockey Canada, luctus sit amet sem non, vulputate vestibulum metus. Phasellus consequat at sem non auctor. Duis porttitor, tellus in pharetra dapibus, tortor est commodo libero, vitae tempus urna metus sit amet massa. Donec suscipit ultricies tincidunt. Cras sit amet auctor ipsum, non pharetra diam.</string>
 </resources>

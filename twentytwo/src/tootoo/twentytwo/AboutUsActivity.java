@@ -3,7 +3,7 @@ package tootoo.twentytwo;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.TextView;
+import android.widget.ListView;
 
 public class AboutUsActivity extends Activity{
     
@@ -12,8 +12,13 @@ public class AboutUsActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
         
-        TextView tv = (TextView) findViewById(R.id.bodyText1);
-        tv.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam gravida tristique nunc, ut porta justo imperdiet nec. Suspendisse potenti. Morbi lorem massa, luctus sit amet sem non, vulputate vestibulum metus. Phasellus consequat at sem non auctor. Duis porttitor, tellus in pharetra dapibus, tortor est commodo libero, vitae tempus urna metus sit amet massa. Donec suscipit ultricies tincidunt. Cras sit amet auctor ipsum, non pharetra diam.");
+        ListItem list_item_data[] = new ListItem[] {new ListItem(R.drawable.ic_launcher, "Org 1", "1 Lorem Ipsum Dolor Sit Amet"), new ListItem(R.drawable.ic_launcher, "Org 2", "2 Lorem Ipsum Dolor Sit Amet"), new ListItem(R.drawable.ic_launcher, "Org 3", "3 Lorem Ipsum Dolor Sit Amet"), new ListItem(R.drawable.ic_launcher, "Org 4", "4 Lorem Ipsum Dolor Sit Amet")};
+        
+        ListItemAdapter adapter = new ListItemAdapter(this, R.layout.about_us_row, list_item_data);
+        ListView lv = (ListView) findViewById(R.id.aboutUsListView);
+        lv.setAdapter(adapter);
+        
+        // TODO Make the ListItems clickable
     }
     
     @Override
