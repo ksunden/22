@@ -7,7 +7,7 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="18" />
-    
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -51,6 +51,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="tootoo.twentytwo.MenuActivity" />
+        </activity>
+        <activity
+            android:name="tootoo.twentytwo.CartActivity"
+            android:label="@string/title_activity_cart" >
         </activity>
     </application>
 

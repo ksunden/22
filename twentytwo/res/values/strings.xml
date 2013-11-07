@@ -14,5 +14,6 @@
     <string name="social_button">Social Media</string>
     <string name="title_activity_social">SocialActivity</string>
     <string name="title_activity_resources">ResourcesActivity</string>
+    <string name="title_activity_cart">Cart</string>
 
 </resources>
