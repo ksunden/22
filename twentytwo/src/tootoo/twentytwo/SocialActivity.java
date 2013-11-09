@@ -1,15 +1,10 @@
 package tootoo.twentytwo;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
+import android.widget.ListView;
 
 public class SocialActivity extends Activity{
     
@@ -18,24 +13,11 @@ public class SocialActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_social);
-        // Show the Up button in the action bar.
-        setupActionBar();
         
-        WebView wv = (WebView) findViewById(R.id.twitterWebview);
-        WebSettings webSettings = wv.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        wv.loadUrl("file:///android_asset/twitterchunk.html");
-    }
-    
-    /**
-     * Set up the {@link android.app.ActionBar}, if the API is available.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private void setupActionBar(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-        {
-            getActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+        TwitterItem twitter_item_data[] = new TwitterItem[] {new TwitterItem(R.drawable.ic_launcher, "User 1", "1 Lorem Ipsum Dolor Sit Amet"), new TwitterItem(R.drawable.ic_launcher, "Person 2", "2 Lorem Ipsum Dolor Sit Amet")};
+        TwitterItemAdapter adapter = new TwitterItemAdapter(this, R.layout.tweet_row, twitter_item_data);
+        ListView lv = (ListView) findViewById(R.id.twitterListView);
+        lv.setAdapter(adapter);
     }
     
     @Override
@@ -44,23 +26,4 @@ public class SocialActivity extends Activity{
         getMenuInflater().inflate(R.menu.social, menu);
         return true;
     }
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch(item.getItemId())
-        {
-            case android.R.id.home:
-                // This ID represents the Home or Up button. In the case of this
-                // activity, the Up button is shown. Use NavUtils to allow users
-                // to navigate up one level in the application structure. For
-                // more details, see the Navigation pattern on Android Design:
-                //
-                // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-                //
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    
 }
