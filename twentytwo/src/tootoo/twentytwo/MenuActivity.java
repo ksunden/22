@@ -17,7 +17,7 @@ public class MenuActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         
-        // TODO Add image decode/boundaries stuff
+        // TODO Add image/background stuff
         
         // Creates an intent to transfer the user to the info and bio screen.
         Button bioButton = (Button) findViewById(R.id.bioButton);
