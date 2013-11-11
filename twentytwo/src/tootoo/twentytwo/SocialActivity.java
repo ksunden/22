@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import tootoo.twentytwo.TweetDBContract.TweetEntry;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.database.Cursor;
+import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
@@ -37,14 +37,26 @@ public class SocialActivity extends Activity{
          */
         
         TweetDBHelper helper = new TweetDBHelper(getBaseContext());
-        SQLiteDatabase database = helper.getReadableDatabase();
+        SQLiteDatabase database = helper.getWritableDatabase();
+        helper.onUpgrade(database, 0, 0);
+        
+        ContentValues values = new ContentValues();
+        
+        values.put(TweetEntry.COLUMN_NAME_USER_NAME, "Useruser 1");
+        values.put(TweetEntry.COLUMN_NAME_TWEET_CONTENT, "hey hey hey hey hey hye hockey hockey problems yes");
+        
+        @SuppressWarnings("unused")
+        long newRowId = database.insert(TweetEntry.TABLE_NAME, null, values);
         
         ArrayList<TwitterItem> twitterItem = new ArrayList<TwitterItem>();
-        Cursor cursor = database.rawQuery("SELECT * FROM " + TweetEntry.TABLE_NAME, null);
-        while(!cursor.isAfterLast())
-        {
-            twitterItem.add(new TwitterItem(R.drawable.ic_launcher, cursor.getString(cursor.getColumnIndexOrThrow(TweetEntry.COLUMN_NAME_USER_NAME)), cursor.getString(cursor.getColumnIndexOrThrow(TweetEntry.COLUMN_NAME_TWEET_CONTENT))));
-        }
+        // Cursor cursor = database.rawQuery("SELECT * FROM " +
+        // TweetEntry.TABLE_NAME, null);
+        // while(!cursor.isAfterLast())
+        // {
+        // twitterItem.add(new TwitterItem(R.drawable.ic_launcher,
+        // cursor.getString(cursor.getColumnIndex(TweetEntry.COLUMN_NAME_USER_NAME)),
+        // cursor.getString(cursor.getColumnIndex(TweetEntry.COLUMN_NAME_TWEET_CONTENT))));
+        // }
         
         twitterItem.add(new TwitterItem(R.drawable.ic_launcher, "User 1", "1 Lorem Ipsum Dolor Sit Amet"));
         twitterItem.add(new TwitterItem(R.drawable.ic_launcher, "Person 2", "2 Lorem Ipsum Dolor Sit Amet"));
