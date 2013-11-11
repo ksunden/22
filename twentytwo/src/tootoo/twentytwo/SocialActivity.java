@@ -1,13 +1,12 @@
 package tootoo.twentytwo;
 
-import java.util.List;
+import java.util.ArrayList;
 
-import twitter4j.Status;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
+import tootoo.twentytwo.TweetDBContract.TweetEntry;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ListView;
@@ -25,25 +24,32 @@ public class SocialActivity extends Activity{
         // TODO I have no idea how this will work and won't be able to get it to
         // work for some time yet
         
-        /*Twitter twitter = TwitterFactory.getSingleton();
-        twitter.setOAuthConsumer(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET);
-        List<Status> statuses = null;
-        try
+        /*
+         * Twitter twitter = TwitterFactory.getSingleton();
+         * twitter.setOAuthConsumer(TWITTER_CONSUMER_KEY,
+         * TWITTER_CONSUMER_SECRET); List<Status> statuses = null; try {
+         * statuses = twitter.getUserTimeline("TeamTooTooFund");
+         * }catch(TwitterException e) { // TODO Auto-generated catch block
+         * e.printStackTrace(); } System.out.println("Showing home timeline.");
+         * for(Status status : statuses) {
+         * System.out.println(status.getUser().getName() + ":" +
+         * status.getText()); }
+         */
+        
+        TweetDBHelper helper = new TweetDBHelper(getBaseContext());
+        SQLiteDatabase database = helper.getReadableDatabase();
+        
+        ArrayList<TwitterItem> twitterItem = new ArrayList<TwitterItem>();
+        Cursor cursor = database.rawQuery("SELECT * FROM " + TweetEntry.TABLE_NAME, null);
+        while(!cursor.isAfterLast())
         {
-            statuses = twitter.getUserTimeline("TeamTooTooFund");
-        }catch(TwitterException e)
-        {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            twitterItem.add(new TwitterItem(R.drawable.ic_launcher, cursor.getString(cursor.getColumnIndexOrThrow(TweetEntry.COLUMN_NAME_USER_NAME)), cursor.getString(cursor.getColumnIndexOrThrow(TweetEntry.COLUMN_NAME_TWEET_CONTENT))));
         }
-        System.out.println("Showing home timeline.");
-        for(Status status : statuses)
-        {
-            System.out.println(status.getUser().getName() + ":" + status.getText());
-        }
-        */
-        TwitterItem twitter_item_data[] = new TwitterItem[] {new TwitterItem(R.drawable.ic_launcher, "User 1", "1 Lorem Ipsum Dolor Sit Amet"), new TwitterItem(R.drawable.ic_launcher, "Person 2", "2 Lorem Ipsum Dolor Sit Amet")};
-        TwitterItemAdapter adapter = new TwitterItemAdapter(this, R.layout.tweet_row, twitter_item_data);
+        
+        twitterItem.add(new TwitterItem(R.drawable.ic_launcher, "User 1", "1 Lorem Ipsum Dolor Sit Amet"));
+        twitterItem.add(new TwitterItem(R.drawable.ic_launcher, "Person 2", "2 Lorem Ipsum Dolor Sit Amet"));
+        
+        TwitterItemAdapter adapter = new TwitterItemAdapter(this, R.layout.tweet_row, twitterItem);
         ListView lv = (ListView) findViewById(R.id.twitterListView);
         lv.setAdapter(adapter);
     }

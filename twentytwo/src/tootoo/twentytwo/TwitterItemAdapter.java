@@ -1,5 +1,7 @@
 package tootoo.twentytwo;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,14 +14,14 @@ import android.widget.TextView;
 public class TwitterItemAdapter extends ArrayAdapter<TwitterItem>{
     Context context;
     int layoutResourceId;
-    TwitterItem data[] = null;
+    ArrayList<TwitterItem> tweetList = null;
     
-    public TwitterItemAdapter(Context context, int layoutResourceId, TwitterItem[] data)
+    public TwitterItemAdapter(Context context, int layoutResourceId, ArrayList<TwitterItem> data)
     {
         super(context, layoutResourceId, data);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
-        this.data = data;
+        this.tweetList = data;
     }
     
     public View getView(int position, View convertView, ViewGroup parent){
@@ -42,7 +44,7 @@ public class TwitterItemAdapter extends ArrayAdapter<TwitterItem>{
             holder = (TwitterItemHolder) row.getTag();
         }
         
-        TwitterItem ti = data[position];
+        TwitterItem ti = tweetList.get(position);
         holder.itemIcon.setImageResource(ti.tweetImage);
         holder.itemUserName.setText(ti.tweetUserName);
         holder.itemContent.setText(ti.tweetContent);
