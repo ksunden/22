@@ -1,41 +1,56 @@
 package tootoo.twentytwo;
 
+import java.util.ArrayList;
+
+import tootoo.twentytwo.TweetDBContract.TweetEntry;
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.os.Build;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteCursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
+import android.widget.ListView;
 
 public class SocialActivity extends Activity{
+    static String TWITTER_CONSUMER_KEY = "STUFFFFFF";
+    static String TWITTER_CONSUMER_SECRET = "Stufffffffffffff";
     
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_social);
-        // Show the Up button in the action bar.
-        setupActionBar();
         
-        WebView wv = (WebView) findViewById(R.id.twitterWebview);
-        WebSettings webSettings = wv.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        wv.loadUrl("file:///android_asset/twitterchunk.html");
-    }
-    
-    /**
-     * Set up the {@link android.app.ActionBar}, if the API is available.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private void setupActionBar(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+        // TODO I have no idea how this will work
+        
+        TweetDBHelper helper = new TweetDBHelper(getBaseContext());
+        SQLiteDatabase database = helper.getWritableDatabase();
+        helper.onUpgrade(database, 0, 0);
+        
+        ContentValues values = new ContentValues();
+        
+        values.put(TweetEntry.COLUMN_NAME_USER_NAME, "Useruser 1");
+        values.put(TweetEntry.COLUMN_NAME_TWEET_CONTENT, "hey hey hey hey hey hye hockey hockey problems yes");
+        
+        @SuppressWarnings("unused")
+        long newRowId = database.insert(TweetEntry.TABLE_NAME, null, values);
+        
+        ArrayList<TwitterItem> twitterItem = new ArrayList<TwitterItem>();
+        SQLiteCursor cursor = (SQLiteCursor) database.rawQuery("SELECT * FROM " + TweetEntry.TABLE_NAME, null);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast())
         {
-            getActionBar().setDisplayHomeAsUpEnabled(true);
+            twitterItem.add(new TwitterItem(R.drawable.ic_launcher, cursor.getString(cursor.getColumnIndex(TweetEntry.COLUMN_NAME_USER_NAME)), cursor.getString(cursor.getColumnIndex(TweetEntry.COLUMN_NAME_TWEET_CONTENT))));
+            cursor.moveToNext();
         }
+        
+        twitterItem.add(new TwitterItem(R.drawable.ic_launcher, "User 1", "1 Lorem Ipsum Dolor Sit Amet"));
+        twitterItem.add(new TwitterItem(R.drawable.ic_launcher, "Person 2", "2 Lorem Ipsum Dolor Sit Amet"));
+        
+        TwitterItemAdapter adapter = new TwitterItemAdapter(this, R.layout.tweet_row, twitterItem);
+        ListView lv = (ListView) findViewById(R.id.twitterListView);
+        lv.setAdapter(adapter);
     }
     
     @Override
@@ -44,23 +59,4 @@ public class SocialActivity extends Activity{
         getMenuInflater().inflate(R.menu.social, menu);
         return true;
     }
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch(item.getItemId())
-        {
-            case android.R.id.home:
-                // This ID represents the Home or Up button. In the case of this
-                // activity, the Up button is shown. Use NavUtils to allow users
-                // to navigate up one level in the application structure. For
-                // more details, see the Navigation pattern on Android Design:
-                //
-                // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-                //
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    
 }
