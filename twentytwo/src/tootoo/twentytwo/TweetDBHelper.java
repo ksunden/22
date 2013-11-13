@@ -10,7 +10,7 @@ public class TweetDBHelper extends SQLiteOpenHelper{
     // version.
     public static final int DATABASE_VERSION = 1;
     
-    public static final String DATABASE_NAME = "TooToo.db";
+    public static final String DATABASE_NAME = "tootoo.db";
     
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";

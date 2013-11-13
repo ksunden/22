@@ -6,6 +6,7 @@ import tootoo.twentytwo.TweetDBContract.TweetEntry;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
+import android.database.sqlite.SQLiteCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,20 +22,7 @@ public class SocialActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_social);
         
-        // TODO I have no idea how this will work and won't be able to get it to
-        // work for some time yet
-        
-        /*
-         * Twitter twitter = TwitterFactory.getSingleton();
-         * twitter.setOAuthConsumer(TWITTER_CONSUMER_KEY,
-         * TWITTER_CONSUMER_SECRET); List<Status> statuses = null; try {
-         * statuses = twitter.getUserTimeline("TeamTooTooFund");
-         * }catch(TwitterException e) { // TODO Auto-generated catch block
-         * e.printStackTrace(); } System.out.println("Showing home timeline.");
-         * for(Status status : statuses) {
-         * System.out.println(status.getUser().getName() + ":" +
-         * status.getText()); }
-         */
+        // TODO I have no idea how this will work
         
         TweetDBHelper helper = new TweetDBHelper(getBaseContext());
         SQLiteDatabase database = helper.getWritableDatabase();
@@ -49,14 +37,13 @@ public class SocialActivity extends Activity{
         long newRowId = database.insert(TweetEntry.TABLE_NAME, null, values);
         
         ArrayList<TwitterItem> twitterItem = new ArrayList<TwitterItem>();
-        // Cursor cursor = database.rawQuery("SELECT * FROM " +
-        // TweetEntry.TABLE_NAME, null);
-        // while(!cursor.isAfterLast())
-        // {
-        // twitterItem.add(new TwitterItem(R.drawable.ic_launcher,
-        // cursor.getString(cursor.getColumnIndex(TweetEntry.COLUMN_NAME_USER_NAME)),
-        // cursor.getString(cursor.getColumnIndex(TweetEntry.COLUMN_NAME_TWEET_CONTENT))));
-        // }
+        SQLiteCursor cursor = (SQLiteCursor) database.rawQuery("SELECT * FROM " + TweetEntry.TABLE_NAME, null);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast())
+        {
+            twitterItem.add(new TwitterItem(R.drawable.ic_launcher, cursor.getString(cursor.getColumnIndex(TweetEntry.COLUMN_NAME_USER_NAME)), cursor.getString(cursor.getColumnIndex(TweetEntry.COLUMN_NAME_TWEET_CONTENT))));
+            cursor.moveToNext();
+        }
         
         twitterItem.add(new TwitterItem(R.drawable.ic_launcher, "User 1", "1 Lorem Ipsum Dolor Sit Amet"));
         twitterItem.add(new TwitterItem(R.drawable.ic_launcher, "Person 2", "2 Lorem Ipsum Dolor Sit Amet"));
