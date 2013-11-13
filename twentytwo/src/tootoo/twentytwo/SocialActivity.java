@@ -386,7 +386,10 @@ public class SocialActivity extends Activity{
             @Override
             public void gotHomeTimeline(ResponseList<Status> arg0){
                 // TODO Auto-generated method stub
-                
+                for(Status status : arg0)
+                {
+                    System.out.println(status.getUser().getName() + ":" + status.getText());
+                }
             }
             
             @Override
@@ -592,6 +595,7 @@ public class SocialActivity extends Activity{
                 // TODO Auto-generated method stub
                 
             }
+            
         });
         try
         {
@@ -609,7 +613,7 @@ public class SocialActivity extends Activity{
             // prefs.edit().putString("accessToken",
             // accessToken.getToken()).putString("accessTokenSecret",
             // accessToken.getTokenSecret()).commit();
-        }catch(TwitterException e)
+        }catch(Exception e)
         {
             // TODO Auto-generated catch block
             e.printStackTrace();
