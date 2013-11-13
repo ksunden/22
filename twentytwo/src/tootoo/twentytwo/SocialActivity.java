@@ -1,14 +1,23 @@
 package tootoo.twentytwo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import tootoo.twentytwo.TweetDBContract.TweetEntry;
+import twitter4j.AsyncTwitter;
+import twitter4j.AsyncTwitterFactory;
+import twitter4j.Status;
+import twitter4j.TwitterException;
+import twitter4j.conf.ConfigurationBuilder;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.ListView;
 
@@ -22,7 +31,32 @@ public class SocialActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_social);
         
+        SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
         // TODO I have no idea how this will work
+        ConfigurationBuilder cb = new ConfigurationBuilder();
+        cb.setDebugEnabled(true).setOAuthConsumerKey("Rtqg9HbxzxVb9Sp7T1Q").setOAuthConsumerSecret("zsMheHZcCIrVyLxDv3be9ocQ1D9XRDkyjVVBGkZVA").setOAuthAccessToken("**************************************************").setOAuthAccessTokenSecret("******************************************");
+        AsyncTwitter twitter = new AsyncTwitterFactory(cb.build()).getInstance();
+        try
+        {
+            List<Status> statuses = twitter.getHomeTimeline();
+            System.out.println("Showing home timeline.");
+            for(Status status : statuses)
+            {
+                System.out.println(status.getUser().getName() + ":" + status.getText());
+            }
+            twitter.setOAuthConsumer("Rtqg9HbxzxVb9Sp7T1Q", "zsMheHZcCIrVyLxDv3be9ocQ1D9XRDkyjVVBGkZVA");
+            
+            // AccessToken accessToken = twitter.getOAuthAccessToken();
+            // prefs.edit().putString("accessToken",
+            // accessToken.getToken()).putString("accessTokenSecret",
+            // accessToken.getTokenSecret()).commit();
+        }catch(TwitterException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        Log.d("AccessToken", prefs.getString("accessToken", "null"));
         
         TweetDBHelper helper = new TweetDBHelper(getBaseContext());
         SQLiteDatabase database = helper.getWritableDatabase();
