@@ -11,7 +11,6 @@ import twitter4j.TwitterAdapter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterMethod;
 import twitter4j.conf.ConfigurationBuilder;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
@@ -27,33 +26,42 @@ public class SocialActivity extends Activity{
     static String TWITTER_CONSUMER_KEY = "Rtqg9HbxzxVb9Sp7T1Q";
     static String TWITTER_CONSUMER_SECRET = "zsMheHZcCIrVyLxDv3be9ocQ1D9XRDkyjVVBGkZVA";
     
-    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_social);
         
+        @SuppressWarnings("unused")
         SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
-        // TODO I have no idea how this will work
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true).setOAuthConsumerKey(TWITTER_CONSUMER_KEY).setOAuthConsumerSecret(TWITTER_CONSUMER_SECRET).setOAuthAccessToken("1117933645-5KR4AJIvfQ9xvN0YTX28cJNoalk725VMFdOVLJg").setOAuthAccessTokenSecret("MgLqOiDqyMpYcQ53PE2Zg0paNWsuAxYilNREKfpIIqFqV");
         AsyncTwitter twitter = new AsyncTwitterFactory(cb.build()).getInstance();
+        
+        TweetDBHelper helper = new TweetDBHelper(getBaseContext());
+        SQLiteDatabase database = helper.getWritableDatabase();
+        helper.onUpgrade(database, 0, 0);
+        ContentValues values = new ContentValues();
+        
         twitter.addListener(new TwitterAdapter() {
             @Override
             public void gotUserTimeline(ResponseList<Status> statuses){
-                // TODO Auto-generated method stub
                 Log.d("I AM HERE", ":) HI FRIEND");
+                
                 for(Status status : statuses)
                 {
+                    
                     System.out.println(status.getUser().getName() + ":" + status.getText());
+                    values.put(TweetEntry.COLUMN_NAME_USER_NAME, status.getUser().getName());
+                    values.put(TweetEntry.COLUMN_NAME_TWEET_CONTENT, status.getText());
+                    
+                    @SuppressWarnings("unused")
+                    long newRowId = database.insert(TweetEntry.TABLE_NAME, null, values);
                 }
                 super.gotUserTimeline(statuses);
             }
             
             @Override
             public void onException(TwitterException te, TwitterMethod method){
-                // TODO Auto-generated method stub
-                
                 te.printStackTrace();
                 super.onException(te, method);
             }
@@ -63,7 +71,6 @@ public class SocialActivity extends Activity{
         try
         {
             twitter.getOAuthAccessToken();
-            // List<Status> statuses =
             twitter.getUserTimeline("@TeamTootooFund");
             // for(Status status : statuses)
             // {
@@ -79,21 +86,8 @@ public class SocialActivity extends Activity{
             // accessToken.getTokenSecret()).commit();
         }catch(Exception e)
         {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
-        TweetDBHelper helper = new TweetDBHelper(getBaseContext());
-        SQLiteDatabase database = helper.getWritableDatabase();
-        helper.onUpgrade(database, 0, 0);
-        
-        ContentValues values = new ContentValues();
-        
-        values.put(TweetEntry.COLUMN_NAME_USER_NAME, "Useruser 1");
-        values.put(TweetEntry.COLUMN_NAME_TWEET_CONTENT, "hey hey hey hey hey hye hockey hockey problems yes");
-        
-        @SuppressWarnings("unused")
-        long newRowId = database.insert(TweetEntry.TABLE_NAME, null, values);
         
         ArrayList<TwitterItem> twitterItem = new ArrayList<TwitterItem>();
         SQLiteCursor cursor = (SQLiteCursor) database.rawQuery("SELECT * FROM " + TweetEntry.TABLE_NAME, null);
@@ -110,6 +104,9 @@ public class SocialActivity extends Activity{
         TwitterItemAdapter adapter = new TwitterItemAdapter(this, R.layout.tweet_row, twitterItem);
         ListView lv = (ListView) findViewById(R.id.twitterListView);
         lv.setAdapter(adapter);
+        
+        database.close();
+        cursor.close();
     }
     
     @Override
