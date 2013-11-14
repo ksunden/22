@@ -2,7 +2,6 @@ package tootoo.twentytwo;
 
 import java.util.ArrayList;
 
-import tootoo.twentytwo.TweetDBContract.TweetEntry;
 import twitter4j.AsyncTwitter;
 import twitter4j.AsyncTwitterFactory;
 import twitter4j.ResponseList;
@@ -15,7 +14,6 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +23,11 @@ import android.widget.ListView;
 public class SocialActivity extends Activity{
     static String TWITTER_CONSUMER_KEY = "Rtqg9HbxzxVb9Sp7T1Q";
     static String TWITTER_CONSUMER_SECRET = "zsMheHZcCIrVyLxDv3be9ocQ1D9XRDkyjVVBGkZVA";
+    
+    static ContentValues values;
+    private static SQLiteDatabase database;
+    private static ArrayList<TwitterItem> twitterList;
+    private static TwitterItemAdapter adapter;
     
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -37,10 +40,11 @@ public class SocialActivity extends Activity{
         cb.setDebugEnabled(true).setOAuthConsumerKey(TWITTER_CONSUMER_KEY).setOAuthConsumerSecret(TWITTER_CONSUMER_SECRET).setOAuthAccessToken("1117933645-5KR4AJIvfQ9xvN0YTX28cJNoalk725VMFdOVLJg").setOAuthAccessTokenSecret("MgLqOiDqyMpYcQ53PE2Zg0paNWsuAxYilNREKfpIIqFqV");
         AsyncTwitter twitter = new AsyncTwitterFactory(cb.build()).getInstance();
         
-        TweetDBHelper helper = new TweetDBHelper(getBaseContext());
-        SQLiteDatabase database = helper.getWritableDatabase();
+        // values = new ContentValues();
+        TweetDBHelper helper = new TweetDBHelper(this);
+        database = helper.getWritableDatabase();
+        
         helper.onUpgrade(database, 0, 0);
-        ContentValues values = new ContentValues();
         
         twitter.addListener(new TwitterAdapter() {
             @Override
@@ -51,12 +55,30 @@ public class SocialActivity extends Activity{
                 {
                     
                     System.out.println(status.getUser().getName() + ":" + status.getText());
-                    values.put(TweetEntry.COLUMN_NAME_USER_NAME, status.getUser().getName());
-                    values.put(TweetEntry.COLUMN_NAME_TWEET_CONTENT, status.getText());
+                    TwitterItem item = new TwitterItem(R.drawable.ic_launcher, status.getUser().getName(), status.getText());
+                    // twitterList.add(item);
+                    adapter.add(item);
+                    // ContentValues vals = new ContentValues();
+                    // vals.put(TweetEntry.COLUMN_NAME_USER_NAME,
+                    // status.getUser().getName());
+                    // vals.put(TweetEntry.COLUMN_NAME_TWEET_CONTENT,
+                    // status.getText());
                     
-                    @SuppressWarnings("unused")
-                    long newRowId = database.insert(TweetEntry.TABLE_NAME, null, values);
+                    // @SuppressWarnings("unused")
+                    // database.beginTransaction();
+                    // database.execSQL("INSERT INTO " + TweetEntry.TABLE_NAME +
+                    // "  (" + TweetEntry.COLUMN_NAME_TWEET_CONTENT + "," +
+                    // TweetEntry.COLUMN_NAME_USER_NAME + ") VALUES (" +
+                    // status.getText() + "," + status.getUser().getName() +
+                    // ");");
+                    // long newRowId =
+                    // database.insertOrThrow(TweetEntry.TABLE_NAME, null,
+                    // vals);
+                    // database.setTransactionSuccessful();
+                    // database.endTransaction();
+                    
                 }
+                adapter.notifyDataSetChanged();
                 super.gotUserTimeline(statuses);
             }
             
@@ -72,41 +94,30 @@ public class SocialActivity extends Activity{
         {
             twitter.getOAuthAccessToken();
             twitter.getUserTimeline("@TeamTootooFund");
-            // for(Status status : statuses)
-            // {
-            // System.out.println(status.getUser().getName() + ":" +
-            // status.getText());
-            // }
-            // twitter.setOAuthConsumer("Rtqg9HbxzxVb9Sp7T1Q",
-            // "zsMheHZcCIrVyLxDv3be9ocQ1D9XRDkyjVVBGkZVA");
             
-            // AccessToken accessToken = twitter.getOAuthAccessToken();
-            // prefs.edit().putString("accessToken",
-            // accessToken.getToken()).putString("accessTokenSecret",
-            // accessToken.getTokenSecret()).commit();
         }catch(Exception e)
         {
             e.printStackTrace();
         }
         
-        ArrayList<TwitterItem> twitterItem = new ArrayList<TwitterItem>();
-        SQLiteCursor cursor = (SQLiteCursor) database.rawQuery("SELECT * FROM " + TweetEntry.TABLE_NAME, null);
-        cursor.moveToFirst();
-        while(!cursor.isAfterLast())
-        {
-            twitterItem.add(new TwitterItem(R.drawable.ic_launcher, cursor.getString(cursor.getColumnIndex(TweetEntry.COLUMN_NAME_USER_NAME)), cursor.getString(cursor.getColumnIndex(TweetEntry.COLUMN_NAME_TWEET_CONTENT))));
-            cursor.moveToNext();
-        }
+        twitterList = new ArrayList<TwitterItem>();
+        // SQLiteCursor cursor = (SQLiteCursor)
+        // database.rawQuery("SELECT * FROM " + TweetEntry.TABLE_NAME, null);
+        // cursor.moveToFirst();
+        // while(!cursor.isAfterLast())
+        // {
+        // twitterItem.add(new TwitterItem(R.drawable.ic_launcher,
+        // cursor.getString(cursor.getColumnIndex(TweetEntry.COLUMN_NAME_USER_NAME)),
+        // cursor.getString(cursor.getColumnIndex(TweetEntry.COLUMN_NAME_TWEET_CONTENT))));
+        // cursor.moveToNext();
+        // }
         
-        twitterItem.add(new TwitterItem(R.drawable.ic_launcher, "User 1", "1 Lorem Ipsum Dolor Sit Amet"));
-        twitterItem.add(new TwitterItem(R.drawable.ic_launcher, "Person 2", "2 Lorem Ipsum Dolor Sit Amet"));
-        
-        TwitterItemAdapter adapter = new TwitterItemAdapter(this, R.layout.tweet_row, twitterItem);
+        adapter = new TwitterItemAdapter(this, R.layout.tweet_row, twitterList);
         ListView lv = (ListView) findViewById(R.id.twitterListView);
         lv.setAdapter(adapter);
         
-        database.close();
-        cursor.close();
+        // database.close();
+        // cursor.close();
     }
     
     @Override
