@@ -15,7 +15,7 @@ public class TweetDBHelper extends SQLiteOpenHelper{
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";
     
-    private static final String SQL_CREATE_ENTRIES = "CREATE TABLE " + TweetEntry.TABLE_NAME + " (" + TweetEntry._ID + " INTEGER PRIMARY KEY," + TweetEntry.COLUMN_NAME_USER_NAME + TEXT_TYPE + COMMA_SEP + TweetEntry.COLUMN_NAME_TWEET_CONTENT + TEXT_TYPE + " )";
+    private static final String SQL_CREATE_ENTRIES = "CREATE TABLE " + TweetEntry.TABLE_NAME + " (" + TweetEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + TweetEntry.COLUMN_NAME_USER_NAME + TEXT_TYPE + COMMA_SEP + TweetEntry.COLUMN_NAME_TWEET_CONTENT + TEXT_TYPE + " )";
     
     public static final String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + TweetEntry.TABLE_NAME;
     
