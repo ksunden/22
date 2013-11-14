@@ -52,10 +52,6 @@ public class TwitterItemAdapter extends ArrayAdapter<TwitterItem>{
         return row;
     }
     
-    public void add(TwitterItem item){
-        tweetList.add(item);
-    }
-    
     static class TwitterItemHolder{
         ImageView itemIcon;
         TextView itemUserName;
