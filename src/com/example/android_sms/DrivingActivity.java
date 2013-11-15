@@ -10,17 +10,21 @@ import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
 import android.support.v4.app.NavUtils;
 import android.telephony.SmsManager;
+import android.telephony.SmsMessage;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class DrivingActivity extends Activity implements OnInitListener{
-    private static String lastText = "HI, call me, we need to talk";
+    private static String lastText = "";
     private static String lastNumber = "";
-    private TextToSpeech tts;
+    private static TextToSpeech tts;
     private SmsManager sms;
     private DrivingActivity mContext;
     
@@ -36,7 +40,17 @@ public class DrivingActivity extends Activity implements OnInitListener{
             
             @Override
             public void onClick(View v){
-                tts.speak(lastText, TextToSpeech.QUEUE_ADD, null);
+                speak();
+            }
+        });
+        
+        CheckBox textToSpeach = (CheckBox) findViewById(R.id.speechEnabled1);
+        textToSpeach.setChecked(MainActivity.isSpeechEnabled);
+        textToSpeach.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                MainActivity.isSpeechEnabled = isChecked;
             }
         });
         
@@ -78,6 +92,23 @@ public class DrivingActivity extends Activity implements OnInitListener{
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    
+    public static void didRecieveMessage(SmsMessage[] msgs){
+        lastNumber = msgs[0].getOriginatingAddress();
+        lastText = "";
+        for(SmsMessage msg : msgs)
+        {
+            lastText += msg.getDisplayMessageBody();
+        }
+        if(MainActivity.isSpeechEnabled)
+        {
+            speak();
+        }
+    }
+    
+    private static void speak(){
+        tts.speak(lastText, TextToSpeech.QUEUE_ADD, null);
     }
     
     @Override

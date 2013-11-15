@@ -8,6 +8,16 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".DrivingActivity" >
 
+
+    <CheckBox
+        android:id="@+id/speechEnabled1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="46dp"
+        android:text="@string/checkbox_text_to_speech_enabled" />
+    
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -37,13 +47,5 @@
         android:layout_centerHorizontal="true"
         android:text="@string/driving_activity_back_text" />
 
-    <CheckBox
-        android:id="@+id/speechEnabled1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:text="@string/checkbox_driving_text_to_speech_enabled" />
 
 </RelativeLayout>
