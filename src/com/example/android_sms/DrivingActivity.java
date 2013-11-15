@@ -1,19 +1,45 @@
 package com.example.android_sms;
 
-import android.os.Bundle;
+import java.util.Locale;
+
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.os.Build;
+import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.speech.tts.TextToSpeech.OnInitListener;
+import android.support.v4.app.NavUtils;
+import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v4.app.NavUtils;
-import android.annotation.TargetApi;
-import android.os.Build;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
-public class DrivingActivity extends Activity{
+public class DrivingActivity extends Activity implements OnInitListener{
+    private static String lastText = "HI, call me, we need to talk";
+    private TextToSpeech tts;
+    private SmsManager sms;
+    private DrivingActivity mContext;
     
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        mContext = this;
         setContentView(R.layout.activity_driving);
+        tts = new TextToSpeech(mContext, mContext);
+        Button repeat = (Button) findViewById(R.id.repeatMessage);
+        repeat.setOnClickListener(new OnClickListener() {
+            
+            @Override
+            public void onClick(View v){
+                // TODO Auto-generated method stub
+                
+                tts.speak(lastText, TextToSpeech.QUEUE_ADD, null);
+            }
+        });
+        
         // Show the Up button in the action bar.
         setupActionBar();
     }
@@ -52,6 +78,35 @@ public class DrivingActivity extends Activity{
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    
+    @Override
+    public void onInit(int status){
+        
+        if(status == TextToSpeech.SUCCESS)
+        {
+            
+            int result = tts.setLanguage(Locale.US);
+            
+            if(result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED)
+            {
+                Log.e("TTS", "This Language is not supported");
+            }
+            
+        }else
+        {
+            Log.e("TTS", "Initilization Failed!");
+        }
+    }
+    
+    @Override
+    protected void onDestroy(){
+        if(tts != null)
+        {
+            tts.stop();
+            tts.shutdown();
+        }
+        super.onDestroy();
     }
     
 }
