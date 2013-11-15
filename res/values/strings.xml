@@ -13,5 +13,9 @@
     <string name="checkbox_text_to_speech_enabled">Text-to-speech while app is active</string>
     <string name="button_start_driving">Start NTWD</string>
     <string name="title_activity_driving">DrivingActivity</string>
+    <string name="button_repeat_last_text">Repeat last message</string>
+    <string name="driving_activity_text">NTWD active</string>
+    <string name="driving_activity_back_text">Press \'back\' button to deactivate NTWD</string>
+    <string name="checkbox_driving_text_to_speech_enabled">Turn off text-to-speech</string>
 
 </resources>

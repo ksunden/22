@@ -8,42 +8,40 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".DrivingActivity" >
 
+    <CheckBox
+        android:id="@+id/speechEnabled1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="46dp"
+        android:text="@string/checkbox_driving_text_to_speech_enabled" />
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="25dp"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="@string/driving_activity_text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="36sp" />
+
+    <Button
+        android:id="@+id/startDriving"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
+        android:text="@string/button_repeat_last_text" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/speechEnabled1"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="92dp"
-        android:text="TextView" />
-
-    <CheckBox
-        android:id="@+id/checkBox1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="46dp"
-        android:text="CheckBox" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="46dp"
-        android:text="Button" />
+        android:text="@string/driving_activity_back_text" />
 
 </RelativeLayout>

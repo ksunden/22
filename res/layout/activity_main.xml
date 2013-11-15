@@ -17,45 +17,45 @@
         android:layout_marginTop="14dp" >
 
         <RadioButton
-            android:id="@+id/radio0"
+            android:id="@+id/radioDriving"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="@string/radio_driving_button" />
 
         <RadioButton
-            android:id="@+id/radio1"
+            android:id="@+id/radioOffice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/radio_office_button" />
 
         <RadioButton
-            android:id="@+id/RadioButton01"
+            android:id="@+id/radioMeeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/radio_meeting_button" />
 
         <RadioButton
-            android:id="@+id/radio2"
+            android:id="@+id/radioCustom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/radio_other_button" />
     </RadioGroup>
 
     <CheckBox
-        android:id="@+id/checkBox1"
+        android:id="@+id/speechEnabled1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
+        android:layout_alignLeft="@+id/message"
+        android:layout_below="@+id/message"
         android:layout_marginTop="19dp"
         android:text="@string/checkbox_text_to_speech_enabled" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/startDriving"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/checkBox1"
+        android:layout_below="@+id/speechEnabled1"
         android:layout_marginTop="70dp"
         android:text="@string/button_start_driving" />
 
@@ -70,7 +70,7 @@
         android:textSize="36sp" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/radioGroup1"
