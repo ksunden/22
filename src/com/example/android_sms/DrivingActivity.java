@@ -19,6 +19,7 @@ import android.widget.Button;
 
 public class DrivingActivity extends Activity implements OnInitListener{
     private static String lastText = "HI, call me, we need to talk";
+    private static String lastNumber = "";
     private TextToSpeech tts;
     private SmsManager sms;
     private DrivingActivity mContext;
@@ -29,13 +30,12 @@ public class DrivingActivity extends Activity implements OnInitListener{
         mContext = this;
         setContentView(R.layout.activity_driving);
         tts = new TextToSpeech(mContext, mContext);
+        
         Button repeat = (Button) findViewById(R.id.repeatMessage);
         repeat.setOnClickListener(new OnClickListener() {
             
             @Override
             public void onClick(View v){
-                // TODO Auto-generated method stub
-                
                 tts.speak(lastText, TextToSpeech.QUEUE_ADD, null);
             }
         });
