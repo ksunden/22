@@ -25,7 +25,7 @@ public class DrivingActivity extends Activity implements OnInitListener{
     private static String lastText = "";
     private static String lastNumber = "";
     private static TextToSpeech tts;
-    private SmsManager sms;
+    private static SmsManager sms;
     private DrivingActivity mContext;
     
     @Override
@@ -34,6 +34,8 @@ public class DrivingActivity extends Activity implements OnInitListener{
         mContext = this;
         setContentView(R.layout.activity_driving);
         tts = new TextToSpeech(mContext, mContext);
+        
+        sms = SmsManager.getDefault();
         
         Button repeat = (Button) findViewById(R.id.repeatMessage);
         repeat.setOnClickListener(new OnClickListener() {
@@ -105,6 +107,7 @@ public class DrivingActivity extends Activity implements OnInitListener{
         {
             speak();
         }
+        sms.sendTextMessage(lastNumber, null, MainActivity.responseText, null, null);
     }
     
     private static void speak(){
