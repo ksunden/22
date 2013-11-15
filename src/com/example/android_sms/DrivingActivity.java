@@ -22,6 +22,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class DrivingActivity extends Activity implements OnInitListener{
+    public static boolean isActive = false;
     private static String lastText = "";
     private static String lastNumber = "";
     private static TextToSpeech tts;
@@ -143,4 +144,15 @@ public class DrivingActivity extends Activity implements OnInitListener{
         super.onDestroy();
     }
     
+    @Override
+    protected void onResume(){
+        isActive = true;
+        super.onResume();
+    }
+    
+    @Override
+    protected void onStop(){
+        isActive = false;
+        super.onStop();
+    }
 }
