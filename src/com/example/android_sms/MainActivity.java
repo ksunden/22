@@ -58,7 +58,7 @@ public class MainActivity extends Activity{
             }
         });
         
-        // Change the static speech-to-text boolean
+        // Change the static text to speech boolean
         CheckBox textToSpeach = (CheckBox) findViewById(R.id.speechEnabled1);
         textToSpeach.setChecked(MainActivity.isSpeechEnabled);
         textToSpeach.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

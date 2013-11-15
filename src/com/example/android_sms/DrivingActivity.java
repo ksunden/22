@@ -21,6 +21,16 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
+/**
+ * DrivingActivity is an activity for the 'No Texting While Driving' app while
+ * the app is active. From this activity, incoming texts can be read to the user
+ * without displaying the text on the screen. The user can repeat the most
+ * recent text via a large button on the screen.
+ * 
+ * @author Kyle Sunden and Natalie Davenport
+ * @version 11/15/2013
+ */
+
 public class DrivingActivity extends Activity implements OnInitListener{
     
     // Tracks if no texting while driving is active
