@@ -17,5 +17,6 @@
     <string name="driving_activity_text">NTWD active</string>
     <string name="driving_activity_back_text">Press \'back\' button to deactivate NTWD</string>
     <string name="checkbox_driving_text_to_speech_enabled">Turn off text-to-speech</string>
+    <string name="response_text_menu">Response text message:</string>
 
 </resources>
