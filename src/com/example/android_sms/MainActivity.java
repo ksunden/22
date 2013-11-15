@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -22,7 +24,8 @@ public class MainActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        // TODO Save driving message as the final string value for the thing
+        isSpeechEnabled = false;
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         
         final EditText message = (EditText) findViewById(R.id.message);
         message.setText("I'm currently driving and cannot answer your text");
@@ -57,6 +60,13 @@ public class MainActivity extends Activity{
                 }
             }
         });
+    }
+    
+    @Override
+    protected void onResume(){
+        CheckBox textToSpeach = (CheckBox) findViewById(R.id.speechEnabled1);
+        textToSpeach.setChecked(MainActivity.isSpeechEnabled);
+        super.onRestart();
     }
     
     @Override
