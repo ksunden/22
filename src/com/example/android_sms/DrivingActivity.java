@@ -20,14 +20,19 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.Toast;
 
 public class DrivingActivity extends Activity implements OnInitListener{
+    
+    // Tracks if no texting while driving is active
     public static boolean isActive = false;
+    
+    // Information about the last message
     private static String lastText = "";
     private static String lastNumber = "";
+    
     private static TextToSpeech tts;
     private static SmsManager sms;
+    
     private DrivingActivity mContext;
     
     @Override
@@ -35,10 +40,12 @@ public class DrivingActivity extends Activity implements OnInitListener{
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.activity_driving);
-        tts = new TextToSpeech(mContext, mContext);
         
+        // Setup managing objects
+        tts = new TextToSpeech(mContext, mContext);
         sms = SmsManager.getDefault();
         
+        // Use button to repeat the last received message
         Button repeat = (Button) findViewById(R.id.repeatMessage);
         repeat.setOnClickListener(new OnClickListener() {
             
@@ -48,9 +55,10 @@ public class DrivingActivity extends Activity implements OnInitListener{
             }
         });
         
-        CheckBox textToSpeach = (CheckBox) findViewById(R.id.speechEnabled1);
-        textToSpeach.setChecked(MainActivity.isSpeechEnabled);
-        textToSpeach.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        // Use check box to track text to speech preference
+        CheckBox textToSpeech = (CheckBox) findViewById(R.id.speechEnabled1);
+        textToSpeech.setChecked(MainActivity.isSpeechEnabled);
+        textToSpeech.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
@@ -73,6 +81,7 @@ public class DrivingActivity extends Activity implements OnInitListener{
         }
     }
     
+    // Auto generated options menu methods
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -99,23 +108,29 @@ public class DrivingActivity extends Activity implements OnInitListener{
     }
     
     public static void didRecieveMessage(SmsMessage[] msgs){
+        // Concatenate long message to one
         lastNumber = msgs[0].getOriginatingAddress();
         lastText = "";
         for(SmsMessage msg : msgs)
         {
             lastText += msg.getDisplayMessageBody();
         }
+        
+        // Speak message
         if(MainActivity.isSpeechEnabled)
         {
             speak();
         }
+        // Respond to the message
         sms.sendTextMessage(lastNumber, null, MainActivity.responseText, null, null);
     }
     
+    // Speak the most recent text
     private static void speak(){
-        tts.speak(lastText, TextToSpeech.QUEUE_ADD, null);
+        tts.speak("Message from " + lastNumber + " " + lastText, TextToSpeech.QUEUE_ADD, null);
     }
     
+    // Initialize the text to speech
     @Override
     public void onInit(int status){
         
@@ -135,6 +150,7 @@ public class DrivingActivity extends Activity implements OnInitListener{
         }
     }
     
+    // Stop text to speech and set boolean.
     @Override
     protected void onDestroy(){
         if(tts != null)
@@ -144,15 +160,14 @@ public class DrivingActivity extends Activity implements OnInitListener{
         }
         
         isActive = false;
-        Toast.makeText(this, "destroy", Toast.LENGTH_LONG).show();
         super.onDestroy();
     }
     
+    // Set tracking as active
     @Override
     protected void onResume(){
         isActive = true;
         super.onResume();
-        Toast.makeText(this, "Resume", Toast.LENGTH_LONG).show();
         
     }
     
