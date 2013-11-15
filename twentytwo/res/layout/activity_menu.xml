@@ -35,7 +35,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/bioButton"
-                android:layout_alignRight="@+id/bioButton"
                 android:layout_below="@id/bioButton"
                 android:text="@string/store_button" />
 
@@ -53,18 +52,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/aboutUsButton"
-                android:layout_alignRight="@+id/aboutUsButton"
                 android:layout_below="@id/aboutUsButton"
                 android:text="@string/social_button" />
             
-            <Button
-                android:id="@+id/resourcesButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/socialButton"
-                android:layout_alignRight="@+id/socialButton"
-                android:layout_below="@id/socialButton"
-                android:text="@string/resources_button" />
 			
             </RelativeLayout>
 		</ScrollView>

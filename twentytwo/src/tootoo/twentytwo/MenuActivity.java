@@ -58,15 +58,6 @@ public class MenuActivity extends Activity{
                 startActivity(intent);
             }
         });
-        
-        Button resourcesButton = (Button) findViewById(R.id.resourcesButton);
-        resourcesButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(mContext, ResourcesActivity.class);
-                startActivity(intent);
-            }
-        });
     }
     
     @Override
