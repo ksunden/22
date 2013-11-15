@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.Toast;
 
 public class DrivingActivity extends Activity implements OnInitListener{
     public static boolean isActive = false;
@@ -141,6 +142,9 @@ public class DrivingActivity extends Activity implements OnInitListener{
             tts.stop();
             tts.shutdown();
         }
+        
+        isActive = false;
+        Toast.makeText(this, "destroy", Toast.LENGTH_LONG).show();
         super.onDestroy();
     }
     
@@ -148,11 +152,8 @@ public class DrivingActivity extends Activity implements OnInitListener{
     protected void onResume(){
         isActive = true;
         super.onResume();
+        Toast.makeText(this, "Resume", Toast.LENGTH_LONG).show();
+        
     }
     
-    @Override
-    protected void onStop(){
-        isActive = false;
-        super.onStop();
-    }
 }

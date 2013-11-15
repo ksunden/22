@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -37,6 +38,16 @@ public class MainActivity extends Activity{
                 responseText = message.getText().toString();
                 Intent intent = new Intent(mContext, DrivingActivity.class);
                 startActivity(intent);
+            }
+        });
+        
+        CheckBox textToSpeach = (CheckBox) findViewById(R.id.speechEnabled1);
+        textToSpeach.setChecked(MainActivity.isSpeechEnabled);
+        textToSpeach.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                MainActivity.isSpeechEnabled = isChecked;
             }
         });
         
