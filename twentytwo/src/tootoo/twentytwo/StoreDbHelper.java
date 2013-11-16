@@ -18,10 +18,12 @@ public class StoreDbHelper extends SQLiteOpenHelper{
         super(c, DATABASE_NAME, null, DATABASE_VERSION);
     }
     
+    // Create the database
     @Override
     public void onCreate(SQLiteDatabase db){
         db.execSQL(StoreItems.SQL_CREATE_ITEMS);
         
+        // TODO reformat database insertions
         db.execSQL("INSERT INTO \"store_items\" VALUES (1, 'Wristbands (3 pack)', 10, null, 0);");
         db.execSQL("INSERT INTO \"store_items\" VALUES (2, 'Wristband', 5, null, 0);");
         db.execSQL("INSERT INTO \"store_items\" VALUES (3, 'Signed Puck', 22, null, 0);");
@@ -30,14 +32,19 @@ public class StoreDbHelper extends SQLiteOpenHelper{
         
     }
     
+    // Delete and recreate the database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
         db.execSQL(StoreItems.SQL_DELETE_ITEMS);
         onCreate(db);
     }
     
+    // Calculate and return the total of the items in the database
     public static int calculateTotal(SQLiteDatabase db){
+        // Retrieve only items with positive quantity
         Cursor c = db.query(StoreItems.TABLE_NAME, new String[] {StoreItems._ID, StoreItems.COLUMN_NAME_PRICE, StoreItems.COLUMN_NAME_QUANTITY}, StoreItems.COLUMN_NAME_QUANTITY + ">0", null, null, null, null);
+        
+        // Add all items to total
         c.moveToFirst();
         int sum = 0;
         while(!c.isAfterLast())

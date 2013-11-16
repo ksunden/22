@@ -1,5 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@+id/store_price" android:showAsAction="always" android:enabled="false" android:visible="true" android:title="$"></item><item android:id="@+id/store_cart_menu" android:visible="true" android:title="Cart" android:showAsAction="always"></item>
+    <item android:id="@+id/store_price" android:showAsAction="always" android:visible="true" android:title="$"></item><item android:id="@+id/store_cart_menu" android:visible="true" android:title="Cart" android:showAsAction="always"></item>
     
 
 </menu>
