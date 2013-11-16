@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Android-SMS</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="message_options">Message Options</string>
+    <string name="radio_other_text">Default message</string>
+    <string name="radio_driving_button">Driving</string>
+    <string name="radio_office_button">In the office</string>
+    <string name="radio_meeting_button">In a meeting</string>
+    <string name="radio_other_button">Custom message</string>
+    <string name="checkbox_text_to_speech_enabled">Text-to-speech while app is active</string>
+    <string name="button_start_driving">Start NTWD</string>
+    <string name="title_activity_driving">DrivingActivity</string>
+    <string name="button_repeat_last_text">Repeat last message</string>
+    <string name="driving_activity_text">NTWD active</string>
+    <string name="driving_activity_back_text">Press \'back\' button to deactivate NTWD</string>
+    <string name="checkbox_driving_text_to_speech_enabled">Turn off text-to-speech</string>
+    <string name="response_text_menu">Response text message:</string>
+
+</resources>
