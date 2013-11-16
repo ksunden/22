@@ -34,25 +34,24 @@
 		            android:id="@+id/storeButton"
 		            android:layout_width="match_parent"
 		            android:layout_height="wrap_content"
-		            android:layout_alignLeft="@+id/bioButton"
 		            android:layout_below="@id/bioButton"
+		            android:layout_centerHorizontal="true"
 		            android:text="@string/store_button" />
 
 		        <Button
 		            android:id="@+id/aboutUsButton"
 		            android:layout_width="match_parent"
 		            android:layout_height="wrap_content"
-		            android:layout_alignLeft="@+id/storeButton"
-		            android:layout_alignRight="@+id/storeButton"
 		            android:layout_below="@id/storeButton"
+		            android:layout_centerHorizontal="true"
 		            android:text="@string/about_button" />
 
 		        <Button
 		            android:id="@+id/socialButton"
 		            android:layout_width="match_parent"
 		            android:layout_height="wrap_content"
-		            android:layout_alignLeft="@+id/aboutUsButton"
 		            android:layout_below="@id/aboutUsButton"
+		            android:layout_centerHorizontal="true"
 		            android:text="@string/social_button" />
 		    </RelativeLayout>
 
