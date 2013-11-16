@@ -52,13 +52,11 @@ public class SocialActivity extends Activity{
     public class GetTweets extends AsyncTask<Twitter, Void, ArrayList<TwitterItem>>{
         @Override
         protected void onPreExecute(){
-            // TODO Auto-generated method stub
             super.onPreExecute();
         }
         
         @Override
         protected ArrayList<TwitterItem> doInBackground(Twitter... params){
-            // TODO Auto-generated method stub
             try
             {
                 ResponseList<twitter4j.Status> statuses = params[0].getUserTimeline("@TeamTootooFund");
@@ -72,7 +70,6 @@ public class SocialActivity extends Activity{
                 return list;
             }catch(TwitterException e)
             {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             return null;
@@ -81,8 +78,6 @@ public class SocialActivity extends Activity{
         
         @Override
         protected void onPostExecute(ArrayList<TwitterItem> result){
-            // TODO Auto-generated method stub
-            
             adapter.addAll(result);
             adapter.notifyDataSetChanged();
             super.onPostExecute(result);
