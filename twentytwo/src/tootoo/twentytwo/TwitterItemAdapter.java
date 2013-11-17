@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +51,8 @@ public class TwitterItemAdapter extends ArrayAdapter<TwitterItem>{
         }
         
         TwitterItem ti = tweetList.get(position);
-        holder.itemIcon.setImageURI(Uri.parse(ti.tweetImageLoc));
+        // holder.itemIcon.setImageURI(Uri.parse(ti.tweetImageLoc));
+        holder.itemIcon.setImageResource(ti.tweetImageLoc);
         holder.itemUserName.setText(ti.tweetUserName);
         holder.itemContent.setText(ti.tweetContent);
         

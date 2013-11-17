@@ -8,7 +8,7 @@ package tootoo.twentytwo;
  */
 public class TwitterItem{
     
-    public String tweetImageLoc;
+    public int tweetImageLoc;
     public String tweetUserName;
     public String tweetContent;
     public String tweetHandle;
@@ -20,7 +20,7 @@ public class TwitterItem{
         super();
     }
     
-    public TwitterItem(String address, String userName, String content, String handle)
+    public TwitterItem(int address, String userName, String content, String handle)
     {
         tweetImageLoc = address;
         tweetUserName = userName;
