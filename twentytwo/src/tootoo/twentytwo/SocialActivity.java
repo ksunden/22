@@ -13,6 +13,9 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 // TODO Social Activity class description
@@ -46,6 +49,16 @@ public class SocialActivity extends Activity{
         
         ListView lv = (ListView) findViewById(R.id.twitterListView);
         lv.setAdapter(adapter);
+        
+        lv.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3){
+                TwitterItem ti = (TwitterItem) arg0.getItemAtPosition(arg2);
+                // Intent linkIntent = new Intent(Intent.ACTION_VIEW,
+                // Uri.parse(li.url));
+                // startActivity(linkIntent);
+            }
+        });
     }
     
     @Override
@@ -69,8 +82,9 @@ public class SocialActivity extends Activity{
                 ArrayList<TwitterItem> list = new ArrayList<TwitterItem>();
                 for(twitter4j.Status status : statuses)
                 {
-                    System.out.println(status.getUser().getName() + ":" + status.getText());
-                    TwitterItem item = new TwitterItem(R.drawable.ic_launcher, status.getUser().getName(), status.getText());
+                    // TODO Test if status is a retweet
+                    System.out.println(status.getUser().getName() + " @" + status.getUser().getScreenName() + ":" + status.getText());
+                    TwitterItem item = new TwitterItem(status.getUser().getMiniProfileImageURLHttps(), status.getUser().getName(), status.getText(), "@" + status.getUser().getScreenName());
                     list.add(item);
                 }
                 return list;

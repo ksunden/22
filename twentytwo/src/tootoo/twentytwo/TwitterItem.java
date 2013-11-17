@@ -8,21 +8,24 @@ package tootoo.twentytwo;
  */
 public class TwitterItem{
     
-    public int tweetImage;
+    public String tweetImageLoc;
     public String tweetUserName;
     public String tweetContent;
+    public String tweetHandle;
+    
+    // TODO problems with image
     
     public TwitterItem()
     {
         super();
     }
     
-    public TwitterItem(int image, String userName, String content)
+    public TwitterItem(String address, String userName, String content, String handle)
     {
-        tweetImage = image;
+        tweetImageLoc = address;
         tweetUserName = userName;
         tweetContent = content;
-        
+        tweetHandle = handle;
     }
     
 }
