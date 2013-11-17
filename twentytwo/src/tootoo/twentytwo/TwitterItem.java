@@ -1,5 +1,11 @@
 package tootoo.twentytwo;
 
+// TODO Twitter Item class description
+/**
+ * 
+ * @author Natalie Davenport
+ * @version 11/17/2013
+ */
 public class TwitterItem{
     
     public int tweetImage;

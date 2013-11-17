@@ -8,7 +8,7 @@
             android:id="@+id/mainscreen_logo"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="Banner" />
+            android:contentDescription="@string/banner" />
         
        <ScrollView
 		    android:id="@+id/mainscreen_mainscreenscrollview"

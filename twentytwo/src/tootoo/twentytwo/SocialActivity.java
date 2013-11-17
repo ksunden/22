@@ -15,10 +15,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ListView;
 
+// TODO Social Activity class description
+/**
+ * 
+ * 
+ * @author Kyle Sunden and Natalie Davenport
+ * @version 11/17/2013
+ */
 public class SocialActivity extends Activity{
     static String TWITTER_CONSUMER_KEY = "Rtqg9HbxzxVb9Sp7T1Q";
     static String TWITTER_CONSUMER_SECRET = "zsMheHZcCIrVyLxDv3be9ocQ1D9XRDkyjVVBGkZVA";
-    private static Activity mContext;
     
     private static volatile ArrayList<TwitterItem> twitterList;
     private static volatile TwitterItemAdapter adapter;

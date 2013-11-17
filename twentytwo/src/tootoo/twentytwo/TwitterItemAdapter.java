@@ -11,6 +11,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+// TODO TwitterItemAdapter class description
+/**
+ * 
+ * @author Natalie Davenport and Kyle Sunden
+ * @version 11/17/2013
+ */
 public class TwitterItemAdapter extends ArrayAdapter<TwitterItem>{
     Context context;
     int layoutResourceId;
