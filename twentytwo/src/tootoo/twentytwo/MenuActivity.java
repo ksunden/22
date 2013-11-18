@@ -25,7 +25,7 @@ public class MenuActivity extends Activity{
         
         // TODO Set activity background
         
-        // Creates an intent to transfer the user to Jordin's bio screen.
+        // Creates an intent to transfer the user to Tootoo's bio screen.
         Button bioButton = (Button) findViewById(R.id.bioButton);
         bioButton.setOnClickListener(new OnClickListener() {
             @Override
