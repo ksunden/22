@@ -10,15 +10,18 @@
         android:layout_height="wrap_content"
         android:padding="3dip"
         />
-    <LinearLayout
+
+    <RelativeLayout
+        android:id="@+id/innerRelativeLayout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_alignBottom="@+id/tweetImage"
+        android:layout_toRightOf="@id/tweetImage"
         android:orientation="vertical"
-        android:layout_toRightOf="@id/tweetImage" 
+        android:paddingBottom="2dip"
         android:paddingLeft="4dip"
         android:paddingRight="2dip"
-        android:paddingTop="2dip"
-        android:paddingBottom="2dip">
+        android:paddingTop="2dip" >
        
         <TextView 
             android:id="@+id/tweetUserName"
@@ -32,6 +35,15 @@
             android:id="@+id/tweetContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/tweetUserName"
             />
-    </LinearLayout> 
+
+        <TextView
+            android:id="@+id/tweetDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"/>
+
+    </RelativeLayout> 
 </RelativeLayout>

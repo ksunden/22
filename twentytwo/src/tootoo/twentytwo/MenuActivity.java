@@ -1,10 +1,11 @@
 package tootoo.twentytwo;
 
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -18,12 +19,14 @@ import android.widget.Button;
 public class MenuActivity extends Activity{
     Context mContext = this;
     
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         
-        // TODO Set activity background
+        ActionBar actionBar = getActionBar();
+        actionBar.hide();
         
         // Creates an intent to transfer the user to Tootoo's bio screen.
         Button bioButton = (Button) findViewById(R.id.bioButton);
@@ -65,12 +68,10 @@ public class MenuActivity extends Activity{
             }
         });
     }
-    
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
+    /*
+     * @Override public boolean onCreateOptionsMenu(Menu menu){ // Inflate the
+     * menu; this adds items to the action bar if it is present.
+     * getMenuInflater().inflate(R.menu.menu, menu); return true; }
+     */
     
 }

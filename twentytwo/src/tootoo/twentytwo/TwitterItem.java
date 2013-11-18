@@ -14,26 +14,24 @@ import android.graphics.BitmapFactory;
  */
 public class TwitterItem{
     public Bitmap tweetImage;
-    // public int tweetImageLoc;
     public String tweetUserName;
     public String tweetContent;
     public String tweetHandle;
-    
-    // TODO problems with image
+    public String tweetDate;
     
     public TwitterItem()
     {
         super();
     }
     
-    // String
-    public TwitterItem(String address, String userName, String content, String handle) throws IOException
+    public TwitterItem(String address, String userName, String content, String handle, String date) throws IOException
     {
         URL tweetImageURL = new URL(address);
         tweetImage = BitmapFactory.decodeStream(tweetImageURL.openConnection().getInputStream());
         tweetUserName = userName;
         tweetContent = content;
         tweetHandle = handle;
+        tweetDate = date;
     }
     
 }

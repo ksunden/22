@@ -33,7 +33,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/testTextView"
+            android:layout_alignParentTop="true"
             android:ems="10"
             android:hint="@string/tweet_teamtootoofund"
             android:maxLength="200" />

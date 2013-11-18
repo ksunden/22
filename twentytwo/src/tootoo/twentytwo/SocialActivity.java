@@ -72,11 +72,7 @@ public class SocialActivity extends Activity{
                 {
                     // TODO Test if status is a retweet
                     System.out.println(status.getUser().getName() + " @" + status.getUser().getScreenName() + ":" + status.getText());
-                    TwitterItem item = new TwitterItem(status.getUser().getMiniProfileImageURL(), status.getUser().getName(), status.getText(), "@" + status.getUser().getScreenName());
-                    // TwitterItem item = new
-                    // TwitterItem(R.drawable.ic_launcher,
-                    // status.getUser().getName(), status.getText(), "@" +
-                    // status.getUser().getScreenName());
+                    TwitterItem item = new TwitterItem(status.getUser().getMiniProfileImageURL(), status.getUser().getName(), status.getText(), "@" + status.getUser().getScreenName(), status.getCreatedAt().toString());
                     list.add(item);
                 }
                 return list;

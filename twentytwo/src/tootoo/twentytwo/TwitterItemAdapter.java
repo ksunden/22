@@ -43,6 +43,7 @@ public class TwitterItemAdapter extends ArrayAdapter<TwitterItem>{
             holder.itemIcon = (ImageView) row.findViewById(R.id.tweetImage);
             holder.itemUserName = (TextView) row.findViewById(R.id.tweetUserName);
             holder.itemContent = (TextView) row.findViewById(R.id.tweetContent);
+            holder.itemDate = (TextView) row.findViewById(R.id.tweetDate);
             
             row.setTag(holder);
         }else
@@ -51,17 +52,20 @@ public class TwitterItemAdapter extends ArrayAdapter<TwitterItem>{
         }
         
         TwitterItem ti = tweetList.get(position);
-        // holder.itemIcon.setImageResource(ti.tweetImageLoc);
         holder.itemUserName.setText(ti.tweetUserName);
         holder.itemContent.setText(ti.tweetContent);
         holder.itemIcon.setImageBitmap(ti.tweetImage);
+        holder.itemDate.setText(ti.tweetDate);
         
         return row;
     }
+    
+    // TODO fix roblems that arose after addded date
     
     static class TwitterItemHolder{
         ImageView itemIcon;
         TextView itemUserName;
         TextView itemContent;
+        TextView itemDate;
     }
 }
