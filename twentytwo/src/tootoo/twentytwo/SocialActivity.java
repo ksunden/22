@@ -1,16 +1,19 @@
 package tootoo.twentytwo;
 
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import twitter4j.ResponseList;
 import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.ListView;
 
@@ -34,8 +37,6 @@ public class SocialActivity extends Activity{
         setTitle("Social Media");
         setContentView(R.layout.activity_social);
         
-        @SuppressWarnings("unused")
-        SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true).setOAuthConsumerKey(TWITTER_CONSUMER_KEY).setOAuthConsumerSecret(TWITTER_CONSUMER_SECRET).setOAuthAccessToken("1117933645-5KR4AJIvfQ9xvN0YTX28cJNoalk725VMFdOVLJg").setOAuthAccessTokenSecret("MgLqOiDqyMpYcQ53PE2Zg0paNWsuAxYilNREKfpIIqFqV");
         Twitter twitter = new TwitterFactory(cb.build()).getInstance();
@@ -69,22 +70,23 @@ public class SocialActivity extends Activity{
                 // Retrieve the tweets and add them to an ArrayList
                 ResponseList<twitter4j.Status> statuses = params[0].getUserTimeline("@TeamTootooFund");
                 ArrayList<TwitterItem> list = new ArrayList<TwitterItem>();
+                HashMap<String, Bitmap> userImages = new HashMap<String, Bitmap>();
                 for(twitter4j.Status status : statuses)
                 {
-                    // TODO Test if status is a retweet
-                    System.out.println(status.getUser().getName() + " @" + status.getUser().getScreenName() + ":" + status.getText());
-                    TwitterItem item = new TwitterItem(status.getUser().getBiggerProfileImageURL(), status.getUser().getName(), status.getText(), "@" + status.getUser().getScreenName()/*
-                                                                                                                                                                                         * ,
-                                                                                                                                                                                         * status
-                                                                                                                                                                                         * .
-                                                                                                                                                                                         * getCreatedAt
-                                                                                                                                                                                         * (
-                                                                                                                                                                                         * )
-                                                                                                                                                                                         * .
-                                                                                                                                                                                         * toString
-                                                                                                                                                                                         * (
-                                                                                                                                                                                         * )
-                                                                                                                                                                                         */);
+                    
+                    if(status.isRetweet()) status = status.getRetweetedStatus();
+                    String screenName = "@" + status.getUser().getScreenName();
+                    System.out.println(status.getUser().getName() + " " + screenName + ":" + status.getText());
+                    if(!userImages.containsKey(screenName))
+                    {
+                        BitmapFactory.Options opts = new BitmapFactory.Options();
+                        int size = 10;
+                        opts.outHeight = size;
+                        opts.outWidth = size;
+                        userImages.put(screenName, BitmapFactory.decodeStream(new URL(status.getUser().getBiggerProfileImageURL()).openStream(), null, opts));
+                        Log.d("Image Stuff", userImages.get(screenName).toString());
+                    }
+                    TwitterItem item = new TwitterItem(userImages.get(screenName), status.getUser().getName(), status.getText(), screenName);
                     list.add(item);
                 }
                 return list;
