@@ -44,5 +44,5 @@
             android:layout_toRightOf="@id/tweetUserName"
             />
 
-    </RelativeLayout> 
+     </RelativeLayout> 
 </RelativeLayout>

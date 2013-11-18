@@ -33,6 +33,7 @@ public class StoreActivity extends Activity{
     
     @Override
     protected void onCreate(Bundle savedInstanceState){
+        setTitle("Team Tootoo's Store");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store);
         mContext = this;

@@ -23,6 +23,7 @@ public class AboutUsActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        setTitle("About Team Tootoo");
         setContentView(R.layout.activity_about_us);
         
         // Set up an ArrayList to hold the ListItem data for the ListView, and

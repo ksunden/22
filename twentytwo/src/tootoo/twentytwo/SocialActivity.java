@@ -34,6 +34,7 @@ public class SocialActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        setTitle("Social Media");
         setContentView(R.layout.activity_social);
         
         ConfigurationBuilder cb = new ConfigurationBuilder();
@@ -81,18 +82,7 @@ public class SocialActivity extends Activity{
                         userImages.put(screenName, BitmapFactory.decodeStream(new URL(status.getUser().getBiggerProfileImageURL()).openStream()));
                         Log.d("Image Stuff", userImages.get(screenName).toString());
                     }
-                    TwitterItem item = new TwitterItem(userImages.get(screenName), status.getUser().getName(), status.getText(), screenName/*
-                                                                                                                                            * ,
-                                                                                                                                            * status
-                                                                                                                                            * .
-                                                                                                                                            * getCreatedAt
-                                                                                                                                            * (
-                                                                                                                                            * )
-                                                                                                                                            * .
-                                                                                                                                            * toString
-                                                                                                                                            * (
-                                                                                                                                            * )
-                                                                                                                                            */);
+                    TwitterItem item = new TwitterItem(userImages.get(screenName), status.getUser().getName(), status.getText(), screenName);
                     list.add(item);
                 }
                 return list;
