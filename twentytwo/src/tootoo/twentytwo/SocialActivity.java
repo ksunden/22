@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import twitter4j.ResponseList;
 import twitter4j.Twitter;
-import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 import android.app.Activity;
@@ -71,11 +70,15 @@ public class SocialActivity extends Activity{
                 {
                     // TODO Test if status is a retweet
                     System.out.println(status.getUser().getName() + " @" + status.getUser().getScreenName() + ":" + status.getText());
-                    TwitterItem item = new TwitterItem(R.drawable.ic_launcher, status.getUser().getName(), status.getText(), "@" + status.getUser().getScreenName());
+                    TwitterItem item = new TwitterItem(status.getUser().getMiniProfileImageURL(), status.getUser().getName(), status.getText(), "@" + status.getUser().getScreenName());
+                    // TwitterItem item = new
+                    // TwitterItem(R.drawable.ic_launcher,
+                    // status.getUser().getName(), status.getText(), "@" +
+                    // status.getUser().getScreenName());
                     list.add(item);
                 }
                 return list;
-            }catch(TwitterException e)
+            }catch(Exception e)
             {
                 e.printStackTrace();
             }

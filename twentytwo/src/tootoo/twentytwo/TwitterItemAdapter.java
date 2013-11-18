@@ -51,10 +51,10 @@ public class TwitterItemAdapter extends ArrayAdapter<TwitterItem>{
         }
         
         TwitterItem ti = tweetList.get(position);
-        // holder.itemIcon.setImageURI(Uri.parse(ti.tweetImageLoc));
-        holder.itemIcon.setImageResource(ti.tweetImageLoc);
+        // holder.itemIcon.setImageResource(ti.tweetImageLoc);
         holder.itemUserName.setText(ti.tweetUserName);
         holder.itemContent.setText(ti.tweetContent);
+        holder.itemIcon.setImageBitmap(ti.tweetImage);
         
         return row;
     }
