@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import twitter4j.ResponseList;
 import twitter4j.Twitter;
-import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 import android.app.Activity;
@@ -15,6 +14,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ListView;
 
+// TODO Social Activity class description
+/**
+ * 
+ * 
+ * @author Kyle Sunden and Natalie Davenport
+ * @version 11/17/2013
+ */
 public class SocialActivity extends Activity{
     static String TWITTER_CONSUMER_KEY = "Rtqg9HbxzxVb9Sp7T1Q";
     static String TWITTER_CONSUMER_SECRET = "zsMheHZcCIrVyLxDv3be9ocQ1D9XRDkyjVVBGkZVA";
@@ -64,12 +70,17 @@ public class SocialActivity extends Activity{
                 ArrayList<TwitterItem> list = new ArrayList<TwitterItem>();
                 for(twitter4j.Status status : statuses)
                 {
-                    System.out.println(status.getUser().getName() + ":" + status.getText());
-                    TwitterItem item = new TwitterItem(R.drawable.ic_launcher, status.getUser().getName(), status.getText());
+                    // TODO Test if status is a retweet
+                    System.out.println(status.getUser().getName() + " @" + status.getUser().getScreenName() + ":" + status.getText());
+                    TwitterItem item = new TwitterItem(status.getUser().getMiniProfileImageURL(), status.getUser().getName(), status.getText(), "@" + status.getUser().getScreenName());
+                    // TwitterItem item = new
+                    // TwitterItem(R.drawable.ic_launcher,
+                    // status.getUser().getName(), status.getText(), "@" +
+                    // status.getUser().getScreenName());
                     list.add(item);
                 }
                 return list;
-            }catch(TwitterException e)
+            }catch(Exception e)
             {
                 e.printStackTrace();
             }

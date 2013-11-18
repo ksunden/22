@@ -11,6 +11,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+// TODO TwitterItemAdapter class description
+/**
+ * 
+ * @author Natalie Davenport and Kyle Sunden
+ * @version 11/17/2013
+ */
 public class TwitterItemAdapter extends ArrayAdapter<TwitterItem>{
     Context context;
     int layoutResourceId;
@@ -45,9 +51,10 @@ public class TwitterItemAdapter extends ArrayAdapter<TwitterItem>{
         }
         
         TwitterItem ti = tweetList.get(position);
-        holder.itemIcon.setImageResource(ti.tweetImage);
+        // holder.itemIcon.setImageResource(ti.tweetImageLoc);
         holder.itemUserName.setText(ti.tweetUserName);
         holder.itemContent.setText(ti.tweetContent);
+        holder.itemIcon.setImageBitmap(ti.tweetImage);
         
         return row;
     }

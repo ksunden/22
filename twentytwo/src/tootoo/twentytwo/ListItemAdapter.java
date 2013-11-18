@@ -1,5 +1,7 @@
 package tootoo.twentytwo;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,17 +11,25 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+// TODO ListItemAdapter class description
+// TODO comment this class
+/**
+ * 
+ * 
+ * @author Natalie Davenport
+ * @version 11/17/2013
+ */
 public class ListItemAdapter extends ArrayAdapter<ListItem>{
     Context context;
     int layoutResourceId;
-    ListItem data[] = null;
+    ArrayList<ListItem> list = null;
     
-    public ListItemAdapter(Context context, int layoutResourceId, ListItem[] data)
+    public ListItemAdapter(Context context, int layoutResourceId, ArrayList<ListItem> data)
     {
         super(context, layoutResourceId, data);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
-        this.data = data;
+        this.list = data;
     }
     
     @Override
@@ -43,7 +53,7 @@ public class ListItemAdapter extends ArrayAdapter<ListItem>{
             holder = (ListItemHolder) row.getTag();
         }
         
-        ListItem li = data[position];
+        ListItem li = list.get(position);
         holder.itemTitle.setText(li.title);
         holder.itemDesc.setText(li.desc);
         holder.itemIcon.setImageResource(li.image);

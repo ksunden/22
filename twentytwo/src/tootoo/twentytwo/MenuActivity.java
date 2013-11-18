@@ -9,6 +9,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+// TODO Menu Activity class description
+/**
+ * 
+ * @author Kyle Sunden and Natalie Davenport
+ * @version 11/17/2013
+ */
 public class MenuActivity extends Activity{
     Context mContext = this;
     
@@ -17,9 +23,9 @@ public class MenuActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         
-        // TODO Add image/background stuff
+        // TODO Set activity background
         
-        // Creates an intent to transfer the user to the info and bio screen.
+        // Creates an intent to transfer the user to Tootoo's bio screen.
         Button bioButton = (Button) findViewById(R.id.bioButton);
         bioButton.setOnClickListener(new OnClickListener() {
             @Override
