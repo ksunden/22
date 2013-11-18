@@ -72,8 +72,7 @@ public class SocialActivity extends Activity{
                 HashMap<String, Bitmap> userImages = new HashMap<String, Bitmap>();
                 for(twitter4j.Status status : statuses)
                 {
-                    // TODO Test if status is a retweet
-                    Log.e("Twitter", status.isRetweet() + "");
+                    // Test if status is a retweet
                     if(status.isRetweet()) status = status.getRetweetedStatus();
                     String screenName = "@" + status.getUser().getScreenName();
                     System.out.println(status.getUser().getName() + " " + screenName + ":" + status.getText());
