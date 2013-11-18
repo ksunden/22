@@ -78,11 +78,7 @@ public class SocialActivity extends Activity{
                     System.out.println(status.getUser().getName() + " " + screenName + ":" + status.getText());
                     if(!userImages.containsKey(screenName))
                     {
-                        BitmapFactory.Options opts = new BitmapFactory.Options();
-                        int size = 10;
-                        opts.outHeight = size;
-                        opts.outWidth = size;
-                        userImages.put(screenName, BitmapFactory.decodeStream(new URL(status.getUser().getBiggerProfileImageURL()).openStream(), null, opts));
+                        userImages.put(screenName, BitmapFactory.decodeStream(new URL(status.getUser().getBiggerProfileImageURL()).openStream()));
                         Log.d("Image Stuff", userImages.get(screenName).toString());
                     }
                     TwitterItem item = new TwitterItem(userImages.get(screenName), status.getUser().getName(), status.getText(), screenName/*
