@@ -1,60 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/mainscreen_mainrelativelayout"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainscreen_mainrelativelayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 
-        <ImageView
-            android:id="@+id/mainscreen_logo"
-            android:layout_width="fill_parent"
+    <ImageView
+        android:id="@+id/mainscreen_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/menu_picture" />
+
+    <ScrollView
+        android:id="@+id/mainscreen_mainscreenscrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="Banner" />
-        
-       <ScrollView
-		    android:id="@+id/mainscreen_mainscreenscrollview"
-		    android:layout_width="match_parent"
-		    android:layout_height="match_parent"
-		    android:layout_below="@+id/mainscreen_logo" >
+            android:layout_gravity="bottom"
+            android:dividerPadding="10dp"
+            android:orientation="vertical"
+            android:showDividers="middle" >
 
-		    <RelativeLayout
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:padding="10dp" >
+            <Button
+                android:id="@+id/bioButton"
+                style="@style/TootooButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/bio_button" />
 
-		        <Button
-		            android:id="@+id/bioButton"
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content"
-		            android:layout_alignParentTop="true"
-		            android:layout_centerHorizontal="true"
-		            android:gravity="center_horizontal"
-		            android:text="@string/bio_button" />
+            <Button
+                android:id="@+id/storeButton"
+                style="@style/TootooButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/store_button" />
 
-		        <Button
-		            android:id="@+id/storeButton"
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content"
-		            android:layout_below="@id/bioButton"
-		            android:layout_centerHorizontal="true"
-		            android:text="@string/store_button" />
+            <Button
+                android:id="@+id/aboutUsButton"
+                style="@style/TootooButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/about_button" />
 
-		        <Button
-		            android:id="@+id/aboutUsButton"
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content"
-		            android:layout_below="@id/storeButton"
-		            android:layout_centerHorizontal="true"
-		            android:text="@string/about_button" />
+            <Button
+                android:id="@+id/socialButton"
+                style="@style/TootooButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/social_button" />
+        </LinearLayout>
+    </ScrollView>
 
-		        <Button
-		            android:id="@+id/socialButton"
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content"
-		            android:layout_below="@id/aboutUsButton"
-		            android:layout_centerHorizontal="true"
-		            android:text="@string/social_button" />
-		    </RelativeLayout>
-
-		</ScrollView>
-    </RelativeLayout>
-	
+</RelativeLayout>

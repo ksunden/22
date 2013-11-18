@@ -18,7 +18,6 @@ import android.widget.ListView;
 public class SocialActivity extends Activity{
     static String TWITTER_CONSUMER_KEY = "Rtqg9HbxzxVb9Sp7T1Q";
     static String TWITTER_CONSUMER_SECRET = "zsMheHZcCIrVyLxDv3be9ocQ1D9XRDkyjVVBGkZVA";
-    private static Activity mContext;
     
     private static volatile ArrayList<TwitterItem> twitterList;
     private static volatile TwitterItemAdapter adapter;
@@ -49,6 +48,7 @@ public class SocialActivity extends Activity{
         return true;
     }
     
+    // Task to retrieve tweets from @TeamTootooFund in a background thread
     public class GetTweets extends AsyncTask<Twitter, Void, ArrayList<TwitterItem>>{
         @Override
         protected void onPreExecute(){
@@ -59,6 +59,7 @@ public class SocialActivity extends Activity{
         protected ArrayList<TwitterItem> doInBackground(Twitter... params){
             try
             {
+                // Retrieve the tweets and add them to an ArrayList
                 ResponseList<twitter4j.Status> statuses = params[0].getUserTimeline("@TeamTootooFund");
                 ArrayList<TwitterItem> list = new ArrayList<TwitterItem>();
                 for(twitter4j.Status status : statuses)
@@ -76,6 +77,7 @@ public class SocialActivity extends Activity{
             
         }
         
+        // Update the displayed list
         @Override
         protected void onPostExecute(ArrayList<TwitterItem> result){
             adapter.addAll(result);
