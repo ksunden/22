@@ -17,21 +17,21 @@ public class TwitterItem{
     public String tweetUserName;
     public String tweetContent;
     public String tweetHandle;
-    public String tweetDate;
+    /*public String tweetDate;*/
     
     public TwitterItem()
     {
         super();
     }
     
-    public TwitterItem(String address, String userName, String content, String handle, String date) throws IOException
+    public TwitterItem(String address, String userName, String content, String handle/*, String date*/) throws IOException
     {
         URL tweetImageURL = new URL(address);
         tweetImage = BitmapFactory.decodeStream(tweetImageURL.openConnection().getInputStream());
         tweetUserName = userName;
         tweetContent = content;
         tweetHandle = handle;
-        tweetDate = date;
+        /*tweetDate = date;*/
     }
     
 }
