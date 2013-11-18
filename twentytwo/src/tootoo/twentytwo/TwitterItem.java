@@ -1,10 +1,8 @@
 package tootoo.twentytwo;
 
 import java.io.IOException;
-import java.net.URL;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 // TODO Twitter Item class description
 /**
@@ -24,11 +22,9 @@ public class TwitterItem{
         super();
     }
     
-    public TwitterItem(String address, String userName, String content, String handle/*, String date*/) throws IOException
+    public TwitterItem(Bitmap image, String userName, String content, String handle/*, String date*/) throws IOException
     {
-        URL tweetImageURL = new URL(address);
-        Bitmap unscaledBitmap = BitmapFactory.decodeStream(tweetImageURL.openConnection().getInputStream());
-        tweetImage = Bitmap.createScaledBitmap(unscaledBitmap, 50, 50, true);
+        tweetImage = image;
         tweetUserName = userName;
         tweetContent = content;
         tweetHandle = handle;
