@@ -27,7 +27,8 @@ public class TwitterItem{
     public TwitterItem(String address, String userName, String content, String handle/*, String date*/) throws IOException
     {
         URL tweetImageURL = new URL(address);
-        tweetImage = BitmapFactory.decodeStream(tweetImageURL.openConnection().getInputStream());
+        Bitmap unscaledBitmap = BitmapFactory.decodeStream(tweetImageURL.openConnection().getInputStream());
+        tweetImage = Bitmap.createScaledBitmap(unscaledBitmap, 50, 50, true);
         tweetUserName = userName;
         tweetContent = content;
         tweetHandle = handle;
