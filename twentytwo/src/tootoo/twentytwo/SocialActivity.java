@@ -31,6 +31,7 @@ public class SocialActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        setTitle("Social Media");
         setContentView(R.layout.activity_social);
         
         @SuppressWarnings("unused")
@@ -72,7 +73,18 @@ public class SocialActivity extends Activity{
                 {
                     // TODO Test if status is a retweet
                     System.out.println(status.getUser().getName() + " @" + status.getUser().getScreenName() + ":" + status.getText());
-                    TwitterItem item = new TwitterItem(status.getUser().getBiggerProfileImageURL(), status.getUser().getName(), status.getText(), "@" + status.getUser().getScreenName()/*, status.getCreatedAt().toString()*/);
+                    TwitterItem item = new TwitterItem(status.getUser().getBiggerProfileImageURL(), status.getUser().getName(), status.getText(), "@" + status.getUser().getScreenName()/*
+                                                                                                                                                                                         * ,
+                                                                                                                                                                                         * status
+                                                                                                                                                                                         * .
+                                                                                                                                                                                         * getCreatedAt
+                                                                                                                                                                                         * (
+                                                                                                                                                                                         * )
+                                                                                                                                                                                         * .
+                                                                                                                                                                                         * toString
+                                                                                                                                                                                         * (
+                                                                                                                                                                                         * )
+                                                                                                                                                                                         */);
                     list.add(item);
                 }
                 return list;
