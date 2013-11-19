@@ -12,32 +12,48 @@
     <ListView
         android:id="@+id/twitterListView"
         android:layout_width="match_parent"
-        android:layout_height="300sp"
-        android:layout_weight="0.75" >
+        android:layout_height="0dip"
+        android:layout_weight="150" >
     </ListView>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="28dp"
-        android:layout_weight="0.10" >
+        android:layout_height="wrap_content" >
 
-        <TextView
-            android:id="@+id/testTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+       <!-- android:layout_height="28dp"
+        -->
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:hint="@string/tweet_teamtootoofund"
+        android:maxLength="200" >
 
-        <EditText
-            android:id="@+id/editText1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:ems="10"
-            android:hint="@string/tweet_teamtootoofund"
-            android:maxLength="200" />
+        <requestFocus />
+    </EditText>
 
+    <Button
+        android:id="@+id/button1"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText1"
+        android:layout_toRightOf="@+id/button2"
+        android:text="Our website!" />
+
+    <Button
+        android:id="@+id/button2"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/editText1"
+        android:layout_marginLeft="59dp"
+        android:text="Facebook page!" />
+        
     </RelativeLayout>
-
 </LinearLayout>
