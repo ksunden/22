@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    android:layout_margin="0dp">
+    android:layout_height="match_parent"
+    android:layout_margin="0dp" >
 
     <ImageView
-        android:id="@+id/mainscreen_logo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true"
+        android:id="@+id/mainscreen_logo_a"
+        android:layout_width="wrap_content"
+        android:layout_height="0dip"
         android:contentDescription="@string/menu_image"
         android:scaleType="fitStart"
-        android:src="@drawable/menu_picture" />
+        android:src="@drawable/menu_pic_a" />
 
-
+    <ImageView
+        android:id="@+id/mainscreen_logo_b"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/menu_image"
+        android:src="@drawable/menu_pic_b" />
+    
     <LinearLayout
         android:id="@+id/mainscreen_mainrelativelayout"
         android:layout_width="fill_parent"
@@ -55,6 +60,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="@string/social_button" />
-    </LinearLayout>
+    </LinearLayout>
 
-</RelativeLayout>
+    
+
+</LinearLayout>
