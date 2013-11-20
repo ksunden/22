@@ -16,7 +16,7 @@ public class StoreContract{
         public static final String COLUMN_NAME_QUANTITY = "quantity";
         
         // String to create table
-        public static String SQL_CREATE_ITEMS = "CREATE TABLE " + TABLE_NAME + " (" + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME_NAME + " TEXT," + COLUMN_NAME_PRICE + " INTEGER," + COLUMN_NAME_IMAGE_LOCATION + " TEXT," + COLUMN_NAME_QUANTITY + " INTEGER)";
+        public static String SQL_CREATE_ITEMS = "CREATE TABLE " + TABLE_NAME + " (" + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME_NAME + " TEXT," + COLUMN_NAME_PRICE + " INTEGER," + COLUMN_NAME_IMAGE_LOCATION + " INTEGER," + COLUMN_NAME_QUANTITY + " INTEGER)";
         
         // String to delete table
         public static final String SQL_DELETE_ITEMS = "DROP TABLE IF EXISTS " + TABLE_NAME;

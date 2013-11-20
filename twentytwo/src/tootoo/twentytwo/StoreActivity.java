@@ -10,17 +10,21 @@ import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.SimpleCursorAdapter;
 import android.widget.SimpleCursorAdapter.ViewBinder;
@@ -41,14 +45,23 @@ public class StoreActivity extends Activity{
         // Retrieve database of Team Tootoo merchandise
         db = new StoreDbHelper(this).getWritableDatabase();
         
+        new StoreDbHelper(this).onUpgrade(db, 0, 0);
+        
         // Retrieve items from the database and adapt with cursor adapter
-        Cursor cursor = db.query(StoreItems.TABLE_NAME, new String[] {StoreItems._ID, StoreItems.COLUMN_NAME_NAME}, null, null, null, null, null);
+        Cursor cursor = db.query(StoreItems.TABLE_NAME, new String[] {StoreItems._ID, StoreItems.COLUMN_NAME_NAME, StoreItems.COLUMN_NAME_IMAGE_LOCATION}, null, null, null, null, null);
         // TODO Use api test to use newer constructor for SimpleCursorAdapter
         // when available
-        SimpleCursorAdapter itemAdapter = new SimpleCursorAdapter(this, R.layout.item_preview, cursor, new String[] {StoreItems.COLUMN_NAME_NAME, StoreItems._ID}, new int[] {R.id.preview_item_name, R.id.preview_tableId});
+        SimpleCursorAdapter itemAdapter = new SimpleCursorAdapter(this, R.layout.item_preview, cursor, new String[] {StoreItems._ID, StoreItems.COLUMN_NAME_NAME, StoreItems.COLUMN_NAME_IMAGE_LOCATION}, new int[] {R.id.preview_tableId, R.id.preview_item_name, R.id.preview_image});
         itemAdapter.setViewBinder(new ViewBinder() {
             public boolean setViewValue(View view, Cursor cursor, int columnIndex){
-                if(view instanceof TextView)
+                Log.d("ViewBinding", "" + columnIndex + " " + cursor.getColumnName(columnIndex) + "  " + view.toString());
+                if(view instanceof ImageView)
+                {
+                    ImageView iv = (ImageView) view;
+                    BitmapFactory.Options opts = new BitmapFactory.Options();
+                    opts.inSampleSize = 8;
+                    iv.setImageBitmap(BitmapFactory.decodeResource(getResources(), cursor.getInt(columnIndex), opts));
+                }else if(view instanceof TextView)
                 {
                     // Bind name to the view
                     TextView tv = (TextView) view;
@@ -70,6 +83,7 @@ public class StoreActivity extends Activity{
             
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3){
+                
                 AlertDialog.Builder adb = new AlertDialog.Builder(mContext);
                 LayoutInflater inflater = getLayoutInflater();
                 
@@ -149,7 +163,10 @@ public class StoreActivity extends Activity{
                 });
                 
                 // Show the dialog
-                adb.create().show();
+                AlertDialog dialog = adb.create();
+                dialog.show();
+                dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+                
             }
         });
     }
@@ -180,6 +197,7 @@ public class StoreActivity extends Activity{
     @Override
     protected void onDestroy(){
         db.close();
+        System.gc();
         super.onDestroy();
     }
     

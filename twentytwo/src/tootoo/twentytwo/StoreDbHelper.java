@@ -24,11 +24,12 @@ public class StoreDbHelper extends SQLiteOpenHelper{
         db.execSQL(StoreItems.SQL_CREATE_ITEMS);
         
         // TODO reformat database insertions
-        db.execSQL("INSERT INTO \"store_items\" VALUES (1, 'Wristbands (3 pack)', 10, null, 0);");
-        db.execSQL("INSERT INTO \"store_items\" VALUES (2, 'Wristband', 5, null, 0);");
-        db.execSQL("INSERT INTO \"store_items\" VALUES (3, 'Signed Puck', 22, null, 0);");
-        db.execSQL("INSERT INTO \"store_items\" VALUES (4, 'Signed Jersey', 222, null, 0);");
-        db.execSQL("INSERT INTO \"store_items\" VALUES (5, 'Hat', 15, null, 0);");
+        db.execSQL("INSERT INTO \"" + StoreItems.TABLE_NAME + "\" VALUES (1, 'Wristbands (3 pack)', 10, " + R.drawable.wristbands3 + ", 0);");
+        db.execSQL("INSERT INTO \"" + StoreItems.TABLE_NAME + "\" VALUES (2, 'Wristband', 5, " + R.drawable.wristband1 + ", 0);");
+        db.execSQL("INSERT INTO \"" + StoreItems.TABLE_NAME + "\" VALUES (3, 'Signed Puck', 22, " + R.drawable.puck + ", 0);");
+        db.execSQL("INSERT INTO \"" + StoreItems.TABLE_NAME + "\" VALUES (4, 'Signed Jersey', 222, " + R.drawable.jersey + ", 0);");
+        db.execSQL("INSERT INTO \"" + StoreItems.TABLE_NAME + "\" VALUES (5, 'Hat', 15, " + R.drawable.no_sign_cap + ", 0);");
+        db.execSQL("INSERT INTO \"" + StoreItems.TABLE_NAME + "\" VALUES (6, 'Signed Hat', 22, " + R.drawable.sign_cap + ", 0);");
         
     }
     
