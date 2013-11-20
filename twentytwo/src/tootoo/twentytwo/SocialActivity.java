@@ -1,6 +1,8 @@
 package tootoo.twentytwo;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,12 +11,18 @@ import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 // TODO Social Activity class description
@@ -47,6 +55,27 @@ public class SocialActivity extends Activity{
         
         ListView lv = (ListView) findViewById(R.id.twitterListView);
         lv.setAdapter(adapter);
+        
+        final EditText tweetAt = (EditText) findViewById(R.id.social_tweetAt);
+        Button postButton = (Button) findViewById(R.id.social_submit);
+        postButton.setOnClickListener(new OnClickListener() {
+            
+            @Override
+            public void onClick(View v){
+                String text = "";
+                try
+                {
+                    text = URLEncoder.encode(tweetAt.getText().toString(), "UTF-8");
+                }catch(UnsupportedEncodingException e)
+                {
+                    e.printStackTrace();
+                }
+                String url = "https://twitter.com/intent/tweet?screen_name=TeamTootooFund&text=" + text;
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(browserIntent);
+            }
+        });
+        
     }
     
     @Override
@@ -79,11 +108,7 @@ public class SocialActivity extends Activity{
                     System.out.println(status.getUser().getName() + " " + screenName + ":" + status.getText());
                     if(!userImages.containsKey(screenName))
                     {
-                        BitmapFactory.Options opts = new BitmapFactory.Options();
-                        int size = 10;
-                        opts.outHeight = size;
-                        opts.outWidth = size;
-                        userImages.put(screenName, BitmapFactory.decodeStream(new URL(status.getUser().getBiggerProfileImageURL()).openStream(), null, opts));
+                        userImages.put(screenName, BitmapFactory.decodeStream(new URL(status.getUser().getBiggerProfileImageURL()).openStream()));
                         Log.d("Image Stuff", userImages.get(screenName).toString());
                     }
                     TwitterItem item = new TwitterItem(userImages.get(screenName), status.getUser().getName(), status.getText(), screenName);

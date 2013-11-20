@@ -6,5 +6,6 @@
     <dimen name="item_picture_size">150dp</dimen>
     <color name="white">#FFFFFF</color>
     <color name="DarkGrey">#4f4f4f</color>
+    <dimen name="menu_button_margins">7dip</dimen>
 
 </resources>

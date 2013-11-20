@@ -28,4 +28,5 @@
 	<string name="tweet_teamtootoofund">Tweet @TeamTootooFund!</string>
 	<string name="twitter_icon">twitter icon</string>
 	<string name="menu_image">menu image</string>
+	<string name="social_activity_submit_button">Post</string>
 </resources>

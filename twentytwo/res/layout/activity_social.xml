@@ -12,48 +12,41 @@
     <ListView
         android:id="@+id/twitterListView"
         android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="150" >
+        android:layout_height="300sp"
+        android:layout_weight="0.75" >
     </ListView>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="28dp"
+        android:layout_weight="0.10" >
 
-       <!-- android:layout_height="28dp"
-        -->
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:ems="10"
-        android:hint="@string/tweet_teamtootoofund"
-        android:maxLength="200" >
-
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/button1"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText1"
-        android:layout_toRightOf="@+id/button2"
-        android:text="Our website!" />
-
-    <Button
-        android:id="@+id/button2"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/editText1"
-        android:layout_marginLeft="59dp"
-        android:text="Facebook page!" />
+        <TextView
+            android:id="@+id/testTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/social_tweetAt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:hint="@string/tweet_teamtootoofund"
+            android:maxLength="200" />
+
+        <Button
+            android:id="@+id/social_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/social_activity_submit_button" />
+        </LinearLayout>
+
     </RelativeLayout>
+
 </LinearLayout>

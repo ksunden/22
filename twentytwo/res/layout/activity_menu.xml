@@ -8,7 +8,8 @@
     <ImageView
         android:id="@+id/mainscreen_logo_a"
         android:layout_width="match_parent"
-        android:layout_height="168dp"
+        android:layout_height="0dip"
+        android:layout_weight="75"
         android:contentDescription="@string/menu_image"
         android:scaleType="fitCenter"
         android:src="@drawable/menu_pic_a" />
@@ -16,15 +17,15 @@
     <ImageView
         android:id="@+id/mainscreen_logo_b"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dip"
+        android:layout_weight="25"
         android:contentDescription="@string/menu_image"
         android:src="@drawable/menu_pic_b" />
-    
+
     <LinearLayout
         android:id="@+id/mainscreen_mainrelativelayout"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:dividerPadding="10dp"
+        android:layout_height="wrap_content"
         android:gravity="bottom"
         android:orientation="vertical"
         android:showDividers="middle" >
@@ -42,7 +43,7 @@
             style="@style/TootooButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/menu_button_margins"
             android:text="@string/store_button" />
 
         <Button
@@ -50,7 +51,7 @@
             style="@style/TootooButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/menu_button_margins"
             android:text="@string/about_button" />
 
         <Button
@@ -58,10 +59,8 @@
             style="@style/TootooButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/menu_button_margins"
             android:text="@string/social_button" />
-    </LinearLayout>
-
-    
+    </LinearLayout>
 
 </LinearLayout>
