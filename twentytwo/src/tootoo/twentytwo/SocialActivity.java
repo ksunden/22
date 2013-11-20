@@ -126,8 +126,11 @@ public class SocialActivity extends Activity{
         // Update the displayed list
         @Override
         protected void onPostExecute(ArrayList<TwitterItem> result){
-            adapter.addAll(result);
-            adapter.notifyDataSetChanged();
+            if(result != null)
+            {
+                adapter.addAll(result);
+                adapter.notifyDataSetChanged();
+            }
             super.onPostExecute(result);
         }
         
