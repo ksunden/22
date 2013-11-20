@@ -12,14 +12,14 @@
     <ListView
         android:id="@+id/twitterListView"
         android:layout_width="match_parent"
-        android:layout_height="300sp"
-        android:layout_weight="0.75" >
+        android:layout_height="0dip"
+		android:layout_weight=".75" >
     </ListView>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="28dp"
-        android:layout_weight="0.10" >
+        android:layout_weight=".10"
+        android:layout_height="0dip"
+        android:layout_width="match_parent">
 
         <TextView
             android:id="@+id/testTextView"
@@ -29,6 +29,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_below="@+id/testTextView"
                     android:orientation="horizontal" >
 
         <EditText
