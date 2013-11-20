@@ -1,5 +1,6 @@
 package tootoo.twentytwo;
 
+import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -108,7 +109,14 @@ public class SocialActivity extends Activity{
                     System.out.println(status.getUser().getName() + " " + screenName + ":" + status.getText());
                     if(!userImages.containsKey(screenName))
                     {
-                        userImages.put(screenName, BitmapFactory.decodeStream(new URL(status.getUser().getBiggerProfileImageURL()).openStream()));
+                        try
+                        {
+                            userImages.put(screenName, BitmapFactory.decodeStream(new URL(status.getUser().getBiggerProfileImageURL()).openStream()));
+                        }catch(FileNotFoundException e)
+                        {
+                            e.printStackTrace();
+                            userImages.put(screenName, BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher));
+                        }
                         Log.d("Image Stuff", userImages.get(screenName).toString());
                     }
                     TwitterItem item = new TwitterItem(userImages.get(screenName), status.getUser().getName(), status.getText(), screenName);
