@@ -102,6 +102,7 @@ public class StoreActivity extends Activity{
                 
                 // Determine which object in the database was selected.
                 int viewIndex = ((StoreAdapter) arg0.getAdapter()).getItemIndex(arg1);
+                
                 int tableIdIndex = viewIndex / 2 - (viewIndex / 2) % 2 + viewIndex % 2;
                 final int tableId = tableIds.get(tableIdIndex);
                 

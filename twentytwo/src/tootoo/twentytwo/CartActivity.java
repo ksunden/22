@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.SimpleCursorAdapter.ViewBinder;
@@ -99,8 +100,14 @@ public class CartActivity extends Activity{
                     // Bind strings from database to TextViews
                     TextView tv = (TextView) view;
                     String str = cursor.getString(columnIndex);
+                    str = str.replace("\n", " ");
                     if(columnIndex == cursor.getColumnIndex(StoreItems.COLUMN_NAME_PRICE)) str = "$" + str;
                     tv.setText(str);
+                }else if(view instanceof ImageView)
+                {
+                    ImageView iv = (ImageView) view;
+                    iv.setAdjustViewBounds(true);
+                    iv.setImageResource(cursor.getInt(columnIndex));
                 }
                 return true;
             }

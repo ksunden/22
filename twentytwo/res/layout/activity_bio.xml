@@ -36,7 +36,7 @@
         android:contentDescription="@string/tootoo_pic_1"
         android:paddingBottom="@dimen/menu_button_margins"
         android:scaleType="fitStart"
-        android:src="@drawable/wristbands3" />
+        android:src="@drawable/wristband3" />
 
     <TextView
         android:id="@+id/bioBody2"
