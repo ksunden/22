@@ -11,12 +11,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-// TODO ListItemAdapter class description
-// TODO comment this class
 /**
+ * After doing some research on custom ListViews, we observed that using both
+ * this class and a basic object class for a ListItem was the best way to
+ * proceed. This class inflates the XML layout of a ListItem object and creates
+ * an element in a ListView from it.
  * 
- * 
- * @author Natalie Davenport
+ * @author Natalie Davenport and Kyle Sunden
  * @version 11/17/2013
  */
 public class ListItemAdapter extends ArrayAdapter<ListItem>{
@@ -37,6 +38,8 @@ public class ListItemAdapter extends ArrayAdapter<ListItem>{
         View row = convertView;
         ListItemHolder holder = null;
         
+        // If the row is null, inflate the TextViews and ImageView of the
+        // ListItem object
         if(row == null)
         {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
@@ -53,6 +56,7 @@ public class ListItemAdapter extends ArrayAdapter<ListItem>{
             holder = (ListItemHolder) row.getTag();
         }
         
+        // Assign the values of the ListItem object to the ListItem view
         ListItem li = list.get(position);
         holder.itemTitle.setText(li.title);
         holder.itemDesc.setText(li.desc);

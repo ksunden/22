@@ -24,9 +24,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-// TODO Social Activity class description
 /**
- * 
+ * The SocialActivity class retrieves the Fund's tweets from twitter using the
+ * Twitter4j library, and stores them in an ArrayList of Tweet objects. The
+ * class then calls a custom adapter to fill a ListView with those tweet items.
+ * This page also supports tweet submission sending the user and their typed
+ * message to a twitter page intended for Intent tweets and the like.
  * 
  * @author Kyle Sunden and Natalie Davenport
  * @version 11/17/2013
@@ -43,10 +46,10 @@ public class SocialActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setTitle("Social Media");
+        setTitle("Team Tootoo on Twitter");
         setContentView(R.layout.activity_social);
         
-        // Create twitter object to interact with twitter
+        // Set up twitter OAuth to retrieve the tweets
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true).setOAuthConsumerKey(TWITTER_CONSUMER_KEY).setOAuthConsumerSecret(TWITTER_CONSUMER_SECRET).setOAuthAccessToken(TWITTER_OAUTH_ACCESS_TOKEN).setOAuthAccessTokenSecret(TWITTER_OAUTH_ACCESS_TOKEN_SECRET);
         Twitter twitter = new TwitterFactory(cb.build()).getInstance();

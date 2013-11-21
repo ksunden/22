@@ -9,7 +9,8 @@
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:layout_weight="1"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/ic_launcher"
+        android:contentDescription="@string/store_item" />
 
     <LinearLayout
         android:layout_width="wrap_content"

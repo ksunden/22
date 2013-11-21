@@ -11,8 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-// TODO TwitterItemAdapter class description
 /**
+ * Similar to the ListItemAdapter class, this class takes a TwitterItem object,
+ * retrieves its data, and adds the resulting view to SocialActivity's ListView
+ * of tweets.
  * 
  * @author Natalie Davenport and Kyle Sunden
  * @version 11/17/2013
@@ -34,6 +36,8 @@ public class TwitterItemAdapter extends ArrayAdapter<TwitterItem>{
         View row = convertView;
         TwitterItemHolder holder = null;
         
+        // If the row is null, inflate the ImageView and TextViews of the
+        // TwitterItem XML layout
         if(row == null)
         {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
@@ -50,6 +54,7 @@ public class TwitterItemAdapter extends ArrayAdapter<TwitterItem>{
             holder = (TwitterItemHolder) row.getTag();
         }
         
+        // Set the contents of the view to the values of the TwitterItem object
         TwitterItem ti = tweetList.get(position);
         holder.itemUserName.setText(ti.tweetUserName);
         holder.itemContent.setText(ti.tweetContent);
@@ -57,8 +62,6 @@ public class TwitterItemAdapter extends ArrayAdapter<TwitterItem>{
         
         return row;
     }
-    
-    // TODO fix roblems that arose after addded date
     
     static class TwitterItemHolder{
         ImageView itemIcon;
