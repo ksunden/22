@@ -38,7 +38,7 @@ public class CartActivity extends Activity{
         // TODO Use api test to use newer constructor for SimpleCursorAdapter
         // when available
         // Adapt the cursor to the listView
-        SimpleCursorAdapter itemAdapter = new SimpleCursorAdapter(this, R.layout.item_detail, cursor, new String[] {StoreItems.COLUMN_NAME_NAME, StoreItems.COLUMN_NAME_PRICE, StoreItems.COLUMN_NAME_IMAGE_LOCATION, StoreItems.COLUMN_NAME_QUANTITY}, new int[] {R.id.detail_name, R.id.detail_price, R.id.detail_image, R.id.detail_quantity});
+        SimpleCursorAdapter itemAdapter = new SimpleCursorAdapter(this, R.layout.item_preview, cursor, new String[] {StoreItems.COLUMN_NAME_NAME, StoreItems.COLUMN_NAME_PRICE, StoreItems.COLUMN_NAME_IMAGE_LOCATION, StoreItems.COLUMN_NAME_QUANTITY}, new int[] {R.id.preview_name, R.id.preview_price, R.id.preview_image, R.id.preview_quantity});
         itemAdapter.setViewBinder(new ViewBinder() {
             public boolean setViewValue(View view, Cursor cursor, int columnIndex){
                 if(view instanceof EditText)
@@ -61,7 +61,7 @@ public class CartActivity extends Activity{
                     
                     // Button to decrement the value, store to database, and
                     // update price
-                    Button minus = (Button) vp.findViewById(R.id.detail_minus);
+                    Button minus = (Button) vp.findViewById(R.id.preview_minus);
                     minus.setOnClickListener(new OnClickListener() {
                         
                         @Override
@@ -80,7 +80,7 @@ public class CartActivity extends Activity{
                     
                     // Button to increment the value, store to database, and
                     // update price
-                    Button plus = (Button) vp.findViewById(R.id.detail_plus);
+                    Button plus = (Button) vp.findViewById(R.id.preview_plus);
                     plus.setOnClickListener(new OnClickListener() {
                         
                         @Override
