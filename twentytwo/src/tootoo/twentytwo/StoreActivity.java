@@ -10,7 +10,6 @@ import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -58,9 +57,7 @@ public class StoreActivity extends Activity{
                 if(view instanceof ImageView)
                 {
                     ImageView iv = (ImageView) view;
-                    BitmapFactory.Options opts = new BitmapFactory.Options();
-                    opts.inSampleSize = 8;
-                    iv.setImageBitmap(BitmapFactory.decodeResource(getResources(), cursor.getInt(columnIndex), opts));
+                    iv.setImageResource(cursor.getInt(columnIndex));
                 }else if(view instanceof TextView)
                 {
                     // Bind name to the view
