@@ -12,9 +12,11 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="fitStart"
         android:adjustViewBounds="true"
-        android:src="@drawable/genericPic2" />
+        android:scaleType="fitStart"
+        android:src="@drawable/generictootoo"
+        android:contentDescription="@string/tootoo_pic_1"
+        android:paddingBottom="@dimen/menu_button_margins"/>
 
     <TextView
         android:id="@+id/bioBody1"
