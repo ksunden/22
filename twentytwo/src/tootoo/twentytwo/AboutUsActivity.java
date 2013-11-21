@@ -30,8 +30,8 @@ public class AboutUsActivity extends Activity{
         // add the data
         ArrayList<ListItem> listItemData = new ArrayList<ListItem>();
         listItemData.add(new ListItem(R.drawable.ic_launcher, "Org 1", "1 Lorem Ipsum Dolor Sit Amet", "http://www.google.com"));
-        listItemData.add(new ListItem(R.drawable.ic_launcher, "Org 2", "2 Lorem Ipsum Dolor Sit Amet", "http://www.yahoo.com"));
-        listItemData.add(new ListItem(R.drawable.ic_launcher, "Org 3", "3 Lorem Ipsum Dolor Sit Amet", "http://www.google.com"));
+        listItemData.add(new ListItem(R.drawable.ic_launcher, "Org 2", "2 Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet", "http://www.yahoo.com"));
+        listItemData.add(new ListItem(R.drawable.ic_launcher, "Org 3", "3 Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet ", "http://www.google.com"));
         listItemData.add(new ListItem(R.drawable.ic_launcher, "Org 4", "4 Lorem Ipsum Dolor Sit Amet", "http://www.google.com"));
         
         // Set up the adapter for the ListView
