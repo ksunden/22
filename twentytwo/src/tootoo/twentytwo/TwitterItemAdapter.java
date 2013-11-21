@@ -43,7 +43,6 @@ public class TwitterItemAdapter extends ArrayAdapter<TwitterItem>{
             holder.itemIcon = (ImageView) row.findViewById(R.id.tweetImage);
             holder.itemUserName = (TextView) row.findViewById(R.id.tweetUserName);
             holder.itemContent = (TextView) row.findViewById(R.id.tweetContent);
-            // holder.itemDate = (TextView) row.findViewById(R.id.tweetDate);
             
             row.setTag(holder);
         }else
@@ -55,7 +54,6 @@ public class TwitterItemAdapter extends ArrayAdapter<TwitterItem>{
         holder.itemUserName.setText(ti.tweetUserName);
         holder.itemContent.setText(ti.tweetContent);
         holder.itemIcon.setImageBitmap(ti.tweetImage);
-        // holder.itemDate.setText(ti.tweetDate);
         
         return row;
     }
@@ -66,6 +64,5 @@ public class TwitterItemAdapter extends ArrayAdapter<TwitterItem>{
         ImageView itemIcon;
         TextView itemUserName;
         TextView itemContent;
-        // TextView itemDate;
     }
 }
