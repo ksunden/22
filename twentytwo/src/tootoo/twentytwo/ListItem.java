@@ -1,10 +1,12 @@
 package tootoo.twentytwo;
 
-// TODO ListItem class description
 /**
+ * After doing some research on custom ListViews, Kyle and I determined that
+ * creating a simple ListItem object and its XML and then using a custom adapter
+ * was the best way to go. This class holds the information for the elements in
+ * the Supported Organizations ListView.
  * 
- * 
- * @author Natalie Davenport
+ * @author Natalie Davenport and Kyle Sunden
  * @version 11/17/2013
  */
 public class ListItem{

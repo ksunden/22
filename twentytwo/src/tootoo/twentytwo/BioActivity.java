@@ -4,10 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 
-// TODO BioActivity class description
 /**
+ * This activity contains sample content regardin Jordin's story that will be
+ * replaced at a later date.
  * 
- * @author Natalie Davenport
+ * @author Natalie Davenport and Kyle Sunden
  * @version 11/17/2013
  */
 public class BioActivity extends Activity{

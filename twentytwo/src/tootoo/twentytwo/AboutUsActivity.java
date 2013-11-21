@@ -12,8 +12,10 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-// TODO About Us Activity class description
 /**
+ * The AboutUsActivity contains sample content which will be replaced at a later
+ * date. The list of current supported organizations is displayed through a
+ * custom adapter class to fill the ListView.
  * 
  * @author Kyle Sunden and Natalie Davenport
  * @version 11/17/2013

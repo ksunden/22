@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-// TODO Menu Activity class description
 /**
+ * The MenuActivity class holds the button listeners for links to various pages.
  * 
  * @author Kyle Sunden and Natalie Davenport
  * @version 11/17/2013
@@ -68,10 +68,4 @@ public class MenuActivity extends Activity{
             }
         });
     }
-    /*
-     * @Override public boolean onCreateOptionsMenu(Menu menu){ // Inflate the
-     * menu; this adds items to the action bar if it is present.
-     * getMenuInflater().inflate(R.menu.menu, menu); return true; }
-     */
-    
 }

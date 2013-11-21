@@ -137,7 +137,6 @@ public class CartActivity extends Activity{
             cursor.moveToFirst();
             
             // Add Items with quantity to the email message
-            // TODO format email message
             String message = "";
             while(!cursor.isAfterLast())
             {
