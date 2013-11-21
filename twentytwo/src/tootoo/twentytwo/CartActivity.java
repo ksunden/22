@@ -32,10 +32,9 @@ public class CartActivity extends Activity{
         db = new StoreDbHelper(this).getWritableDatabase();
         
         // Retrieve items with positive quantity
-        // TODO reformat database query and update calls to use args, not
-        // retrieve more data than needed, etc.
         Cursor cursor = db.query(StoreItems.TABLE_NAME, null, StoreItems.COLUMN_NAME_QUANTITY + "> 0", null, null, null, null);
         ListView list = (ListView) findViewById(R.id.cart_listview);
+        
         // TODO Use api test to use newer constructor for SimpleCursorAdapter
         // when available
         // Adapt the cursor to the listView
