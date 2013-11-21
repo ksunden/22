@@ -13,41 +13,31 @@
         android:id="@+id/twitterListView"
         android:layout_width="match_parent"
         android:layout_height="0dip"
-		android:layout_weight=".75" >
+		android:layout_weight=".50" >
     </ListView>
 
-    <RelativeLayout
-        android:layout_weight=".10"
-        android:layout_height="0dip"
-        android:layout_width="match_parent">
-
-        <TextView
-            android:id="@+id/testTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@+id/testTextView"
-                    android:orientation="horizontal" >
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal" >
 
         <EditText
             android:id="@+id/social_tweetAt"
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="10"
+            
             android:hint="@string/tweet_teamtootoofund"
             android:maxLength="200" />
 
         <Button
             android:id="@+id/social_submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/TootooButton_nonMenu"
+            android:layout_width="53dp"
+            android:layout_height="match_parent"
+            android:padding="0dip"
             android:text="@string/social_activity_submit_button" />
-        </LinearLayout>
 
-    </RelativeLayout>
+        </LinearLayout>
 
 </LinearLayout>

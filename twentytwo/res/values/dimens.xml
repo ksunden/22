@@ -7,5 +7,6 @@
     <color name="white">#FFFFFF</color>
     <color name="DarkGrey">#4f4f4f</color>
     <dimen name="menu_button_margins">7dip</dimen>
+    <color name="darkRed">#650205</color>
 
 </resources>
