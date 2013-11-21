@@ -1,5 +1,7 @@
 package tootoo.twentytwo;
 
+import java.util.ArrayList;
+
 import tootoo.twentytwo.StoreContract.StoreItems;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,6 +14,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,15 +27,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.SeekBar;
-import android.widget.SimpleCursorAdapter;
-import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
 
 public class StoreActivity extends Activity{
     private Context mContext;
     private static SQLiteDatabase db;
     private static MenuItem price;
+    private static ArrayList<Integer> tableIds;
     
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -48,34 +49,49 @@ public class StoreActivity extends Activity{
         
         // Retrieve items from the database and adapt with cursor adapter
         Cursor cursor = db.query(StoreItems.TABLE_NAME, new String[] {StoreItems._ID, StoreItems.COLUMN_NAME_NAME, StoreItems.COLUMN_NAME_IMAGE_LOCATION}, null, null, null, null, null);
-        // TODO Use api test to use newer constructor for SimpleCursorAdapter
-        // when available
-        SimpleCursorAdapter itemAdapter = new SimpleCursorAdapter(this, R.layout.item_preview, cursor, new String[] {StoreItems._ID, StoreItems.COLUMN_NAME_NAME, StoreItems.COLUMN_NAME_IMAGE_LOCATION}, new int[] {R.id.preview_tableId, R.id.preview_item_name, R.id.preview_image});
-        itemAdapter.setViewBinder(new ViewBinder() {
-            public boolean setViewValue(View view, Cursor cursor, int columnIndex){
-                Log.d("ViewBinding", "" + columnIndex + " " + cursor.getColumnName(columnIndex) + "  " + view.toString());
-                if(view instanceof ImageView)
-                {
-                    ImageView iv = (ImageView) view;
-                    iv.setImageResource(cursor.getInt(columnIndex));
-                }else if(view instanceof TextView)
-                {
-                    // Bind name to the view
-                    TextView tv = (TextView) view;
-                    String str = cursor.getString(columnIndex);
-                    tv.setText(str);
-                }else if(view instanceof SeekBar)
-                {
-                    // Bind the table id to the hidden SeekBar
-                    ((SeekBar) view).setProgress(cursor.getInt(columnIndex));
-                }
-                return true;
+        cursor.moveToFirst();
+        
+        ImageView blank = new ImageView(this);
+        
+        ArrayList<View> gridItems = new ArrayList<View>();
+        tableIds = new ArrayList<Integer>();
+        
+        while(!cursor.isAfterLast())
+        {
+            int index = gridItems.indexOf(blank);
+            
+            tableIds.add(cursor.getInt(cursor.getColumnIndex(StoreItems._ID)));
+            
+            ImageView iv = new ImageView(this);
+            iv.setAdjustViewBounds(true);
+            iv.setPadding(10, 10, 10, 10);
+            iv.setImageResource(cursor.getInt(cursor.getColumnIndex(StoreItems.COLUMN_NAME_IMAGE_LOCATION)));
+            if(index == -1)
+            {
+                gridItems.add(iv);
+                gridItems.add(blank);
+                
+            }else
+            {
+                gridItems.set(index, iv);
             }
-        });
+            
+            TextView tv = new TextView(this);
+            tv.setTextSize(32);
+            tv.setMaxLines(2);
+            tv.setGravity(Gravity.CENTER);
+            tv.setText(cursor.getString(cursor.getColumnIndex(StoreItems.COLUMN_NAME_NAME)));
+            gridItems.add(tv);
+            
+            cursor.moveToNext();
+        }
+        
+        Log.d("ArrayList", gridItems.toString());
         
         // Set up GridView with data and listener
         GridView grid = (GridView) findViewById(R.id.store_grid);
-        grid.setAdapter(itemAdapter);
+        grid.setGravity(Gravity.CENTER);
+        grid.setAdapter(new StoreAdapter(gridItems));
         grid.setOnItemClickListener(new OnItemClickListener() {
             
             @Override
@@ -84,12 +100,13 @@ public class StoreActivity extends Activity{
                 AlertDialog.Builder adb = new AlertDialog.Builder(mContext);
                 LayoutInflater inflater = getLayoutInflater();
                 
-                // Determine which object in the database was selected. Uses
-                // hidden SeekBar to pass integer value.
-                final SeekBar id = (SeekBar) arg1.findViewById(R.id.preview_tableId);
+                // Determine which object in the database was selected.
+                int viewIndex = ((StoreAdapter) arg0.getAdapter()).getItemIndex(arg1);
+                int tableIdIndex = viewIndex / 2 - (viewIndex / 2) % 2 + viewIndex % 2;
+                final int tableId = tableIds.get(tableIdIndex);
                 
                 // Retrieve the current item
-                Cursor c = db.query(StoreItems.TABLE_NAME, null, "_id = " + id.getProgress(), null, null, null, null);
+                Cursor c = db.query(StoreItems.TABLE_NAME, null, "_id = " + tableId, null, null, null, null);
                 c.moveToFirst();
                 
                 // Set the view for the alert
@@ -141,7 +158,7 @@ public class StoreActivity extends Activity{
                         dialog.dismiss();
                         ContentValues values = new ContentValues();
                         values.put(StoreItems.COLUMN_NAME_QUANTITY, Integer.parseInt(quantity.getText().toString()));
-                        db.update(StoreItems.TABLE_NAME, values, "_id=" + id.getProgress(), null);
+                        db.update(StoreItems.TABLE_NAME, values, "_id=" + tableId, null);
                         updatePrice();
                     }
                 });
@@ -154,7 +171,7 @@ public class StoreActivity extends Activity{
                         dialog.dismiss();
                         ContentValues values = new ContentValues();
                         values.put(StoreItems.COLUMN_NAME_QUANTITY, Integer.parseInt(quantity.getText().toString()));
-                        db.update(StoreItems.TABLE_NAME, values, "_id=" + id.getProgress(), null);
+                        db.update(StoreItems.TABLE_NAME, values, "_id=" + tableId, null);
                         updatePrice();
                     }
                 });
