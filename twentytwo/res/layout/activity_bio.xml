@@ -8,19 +8,18 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".AboutUsActivity" >
-
-    <TextView
-        android:id="@+id/bioHeader"
-        android:layout_width="wrap_content"
+    
+    <ImageView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/about_jordin_title"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:scaleType="fitStart"
+        android:adjustViewBounds="true"
+        android:src="@drawable/genericPic2" />
 
     <TextView
         android:id="@+id/bioBody1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/jb_paragraph_1"
-        android:paddingBottom="10dip" />
+        android:text="@string/jb_paragraph_1" />
     
 </LinearLayout>

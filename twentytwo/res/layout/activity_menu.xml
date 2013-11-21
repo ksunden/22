@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="75"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/menu_image"
         android:scaleType="fitCenter"
         android:src="@drawable/menu_pic_a" />
@@ -18,6 +19,7 @@
         android:id="@+id/mainscreen_logo_b"
         android:layout_width="match_parent"
         android:layout_height="0dip"
+        android:adjustViewBounds="true"
         android:layout_weight="25"
         android:contentDescription="@string/menu_image"
         android:src="@drawable/menu_pic_b" />
