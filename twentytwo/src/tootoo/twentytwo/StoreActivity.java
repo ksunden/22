@@ -77,7 +77,7 @@ public class StoreActivity extends Activity{
             }
             
             TextView tv = new TextView(this);
-            tv.setTextSize(32);
+            tv.setTextSize(20);
             tv.setMaxLines(2);
             tv.setGravity(Gravity.CENTER);
             tv.setText(cursor.getString(cursor.getColumnIndex(StoreItems.COLUMN_NAME_NAME)));
