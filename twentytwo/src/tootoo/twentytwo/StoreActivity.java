@@ -45,27 +45,37 @@ public class StoreActivity extends Activity{
         // Retrieve database of Team Tootoo merchandise
         db = new StoreDbHelper(this).getWritableDatabase();
         
+        // Reset database
         new StoreDbHelper(this).onUpgrade(db, 0, 0);
         
         // Retrieve items from the database and adapt with cursor adapter
         Cursor cursor = db.query(StoreItems.TABLE_NAME, new String[] {StoreItems._ID, StoreItems.COLUMN_NAME_NAME, StoreItems.COLUMN_NAME_IMAGE_LOCATION}, null, null, null, null, null);
         cursor.moveToFirst();
         
-        ImageView blank = new ImageView(this);
+        // Blank view used to space items in ArrayList
+        View blank = new View(this);
         
+        // Lists to represent views to be shown in grid, and their associated
+        // row id
         ArrayList<View> gridItems = new ArrayList<View>();
         tableIds = new ArrayList<Integer>();
         
+        // Add Images and text such that text Images are shown on the same row,
+        // with text on following row
         while(!cursor.isAfterLast())
         {
-            int index = gridItems.indexOf(blank);
-            
+            // Add the table row index
             tableIds.add(cursor.getInt(cursor.getColumnIndex(StoreItems._ID)));
             
+            // Set up image view using resource from database
             ImageView iv = new ImageView(this);
             iv.setAdjustViewBounds(true);
             iv.setPadding(10, 10, 10, 10);
             iv.setImageResource(cursor.getInt(cursor.getColumnIndex(StoreItems.COLUMN_NAME_IMAGE_LOCATION)));
+            
+            int index = gridItems.indexOf(blank);
+            
+            // Add image and blank in place of next image
             if(index == -1)
             {
                 gridItems.add(iv);
@@ -73,9 +83,11 @@ public class StoreActivity extends Activity{
                 
             }else
             {
+                // Replace blank with valid image
                 gridItems.set(index, iv);
             }
             
+            // Add text below image
             TextView tv = new TextView(this);
             tv.setTextSize(20);
             tv.setMaxLines(2);
@@ -103,6 +115,10 @@ public class StoreActivity extends Activity{
                 // Determine which object in the database was selected.
                 int viewIndex = ((StoreAdapter) arg0.getAdapter()).getItemIndex(arg1);
                 
+                // EVIL DEMON MATH
+                // Takes an index 0,1,2,3,...; returns index following pattern
+                // 0,1,0,1,2,3,2,3,4,5,4,5,...
+                // Used so that both picture and name open the same database row
                 int tableIdIndex = viewIndex / 2 - (viewIndex / 2) % 2 + viewIndex % 2;
                 final int tableId = tableIds.get(tableIdIndex);
                 
@@ -120,7 +136,7 @@ public class StoreActivity extends Activity{
                 
                 // Display the name
                 TextView name = (TextView) view.findViewById(R.id.detail_name);
-                name.setText(c.getString(c.getColumnIndex(StoreItems.COLUMN_NAME_NAME)));
+                name.setText(c.getString(c.getColumnIndex(StoreItems.COLUMN_NAME_NAME)).replace("\n", " "));
                 
                 // Display the price
                 TextView price = (TextView) view.findViewById(R.id.detail_price);
@@ -213,6 +229,7 @@ public class StoreActivity extends Activity{
         return super.onOptionsItemSelected(item);
     }
     
+    // Update price when returning from the cart
     @Override
     protected void onResume(){
         updatePrice();

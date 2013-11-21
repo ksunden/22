@@ -1,6 +1,5 @@
 package tootoo.twentytwo;
 
-import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -18,7 +17,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -34,8 +32,10 @@ import android.widget.ListView;
  * @version 11/17/2013
  */
 public class SocialActivity extends Activity{
-    static String TWITTER_CONSUMER_KEY = "Rtqg9HbxzxVb9Sp7T1Q";
-    static String TWITTER_CONSUMER_SECRET = "zsMheHZcCIrVyLxDv3be9ocQ1D9XRDkyjVVBGkZVA";
+    private static final String TWITTER_OAUTH_ACCESS_TOKEN_SECRET = "MgLqOiDqyMpYcQ53PE2Zg0paNWsuAxYilNREKfpIIqFqV";
+    private static final String TWITTER_OAUTH_ACCESS_TOKEN = "1117933645-5KR4AJIvfQ9xvN0YTX28cJNoalk725VMFdOVLJg";
+    private static final String TWITTER_CONSUMER_KEY = "Rtqg9HbxzxVb9Sp7T1Q";
+    private static final String TWITTER_CONSUMER_SECRET = "zsMheHZcCIrVyLxDv3be9ocQ1D9XRDkyjVVBGkZVA";
     
     private static volatile ArrayList<TwitterItem> twitterList;
     private static volatile TwitterItemAdapter adapter;
@@ -46,23 +46,28 @@ public class SocialActivity extends Activity{
         setTitle("Social Media");
         setContentView(R.layout.activity_social);
         
+        // Create twitter object to interact with twitter
         ConfigurationBuilder cb = new ConfigurationBuilder();
-        cb.setDebugEnabled(true).setOAuthConsumerKey(TWITTER_CONSUMER_KEY).setOAuthConsumerSecret(TWITTER_CONSUMER_SECRET).setOAuthAccessToken("1117933645-5KR4AJIvfQ9xvN0YTX28cJNoalk725VMFdOVLJg").setOAuthAccessTokenSecret("MgLqOiDqyMpYcQ53PE2Zg0paNWsuAxYilNREKfpIIqFqV");
+        cb.setDebugEnabled(true).setOAuthConsumerKey(TWITTER_CONSUMER_KEY).setOAuthConsumerSecret(TWITTER_CONSUMER_SECRET).setOAuthAccessToken(TWITTER_OAUTH_ACCESS_TOKEN).setOAuthAccessTokenSecret(TWITTER_OAUTH_ACCESS_TOKEN_SECRET);
         Twitter twitter = new TwitterFactory(cb.build()).getInstance();
         
+        // Retrieve tweets from twitter
         twitterList = new ArrayList<TwitterItem>();
         adapter = new TwitterItemAdapter(this, R.layout.tweet_row, twitterList);
         new GetTweets().execute(twitter);
         
+        // Adapt tweets to the list
         ListView lv = (ListView) findViewById(R.id.twitterListView);
         lv.setAdapter(adapter);
         
+        // Tweet @TeamTootooFund
         final EditText tweetAt = (EditText) findViewById(R.id.social_tweetAt);
         Button postButton = (Button) findViewById(R.id.social_submit);
         postButton.setOnClickListener(new OnClickListener() {
             
             @Override
             public void onClick(View v){
+                // Encode text written in the app
                 String text = "";
                 try
                 {
@@ -71,6 +76,8 @@ public class SocialActivity extends Activity{
                 {
                     e.printStackTrace();
                 }
+                
+                // Open in browser to sign in and post to twitter
                 String url = "https://twitter.com/intent/tweet?screen_name=TeamTootooFund&text=" + text;
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(browserIntent);
@@ -100,25 +107,33 @@ public class SocialActivity extends Activity{
                 // Retrieve the tweets and add them to an ArrayList
                 ResponseList<twitter4j.Status> statuses = params[0].getUserTimeline("@TeamTootooFund");
                 ArrayList<TwitterItem> list = new ArrayList<TwitterItem>();
+                
+                // HashMap for user profile pictures prevents multiple bitmaps
+                // for one user
                 HashMap<String, Bitmap> userImages = new HashMap<String, Bitmap>();
                 for(twitter4j.Status status : statuses)
                 {
                     // Test if status is a retweet
                     if(status.isRetweet()) status = status.getRetweetedStatus();
+                    
+                    // Retrieve the username of the person who posted this
+                    // status
                     String screenName = "@" + status.getUser().getScreenName();
-                    System.out.println(status.getUser().getName() + " " + screenName + ":" + status.getText());
                     if(!userImages.containsKey(screenName))
                     {
+                        // Retrieve user profile picture, if not found, or any
+                        // other exception, use the application icon
                         try
                         {
                             userImages.put(screenName, BitmapFactory.decodeStream(new URL(status.getUser().getBiggerProfileImageURL()).openStream()));
-                        }catch(FileNotFoundException e)
+                        }catch(Exception e)
                         {
                             e.printStackTrace();
                             userImages.put(screenName, BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher));
                         }
-                        Log.d("Image Stuff", userImages.get(screenName).toString());
                     }
+                    
+                    // Add to list
                     TwitterItem item = new TwitterItem(userImages.get(screenName), status.getUser().getName(), status.getText(), screenName);
                     list.add(item);
                 }
