@@ -27,7 +27,8 @@
         </activity>
         <activity
             android:name="tootoo.twentytwo.BioActivity"
-            android:label="@string/title_activity_bio" 
+            android:label="@string/title_activity_bio"
+			android:parentActivityName="tootoo.twentytwo.MenuActivity"   
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -36,6 +37,7 @@
         <activity
             android:name="tootoo.twentytwo.StoreActivity"
             android:label="@string/title_activity_store" 
+            android:parentActivityName="tootoo.twentytwo.MenuActivity" 
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -43,7 +45,8 @@
         </activity>
         <activity
             android:name="tootoo.twentytwo.AboutUsActivity"
-            android:label="@string/title_activity_about_us" 
+            android:label="@string/title_activity_about_us"
+            android:parentActivityName="tootoo.twentytwo.MenuActivity"  
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -61,6 +64,7 @@
         <activity
             android:name="tootoo.twentytwo.CartActivity"
             android:label="@string/title_activity_cart" 
+            android:parentActivityName="tootoo.twentytwo.StoreActivity" 
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
