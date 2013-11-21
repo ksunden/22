@@ -113,6 +113,10 @@ public class StoreActivity extends Activity{
                 View view = inflater.inflate(R.layout.item_detail, null);
                 adb.setView(view);
                 
+                // Show the picture
+                ImageView pic = (ImageView) view.findViewById(R.id.detail_image);
+                pic.setImageResource(c.getInt(c.getColumnIndex(StoreItems.COLUMN_NAME_IMAGE_LOCATION)));
+                
                 // Display the name
                 TextView name = (TextView) view.findViewById(R.id.detail_name);
                 name.setText(c.getString(c.getColumnIndex(StoreItems.COLUMN_NAME_NAME)));
@@ -146,6 +150,7 @@ public class StoreActivity extends Activity{
                     public void onClick(View v){
                         int curr = Integer.parseInt("0" + quantity.getText().toString());
                         curr++;
+                        if(curr < 0) curr = 0;
                         quantity.setText("" + curr);
                     }
                 });
@@ -207,6 +212,12 @@ public class StoreActivity extends Activity{
         return super.onOptionsItemSelected(item);
     }
     
+    @Override
+    protected void onResume(){
+        updatePrice();
+        super.onResume();
+    }
+    
     // Close database connection when activity ends;
     @Override
     protected void onDestroy(){
@@ -218,6 +229,6 @@ public class StoreActivity extends Activity{
     // Update the price displayed in the action bar to the current stored in the
     // database
     private static void updatePrice(){
-        price.setTitle("$" + StoreDbHelper.calculateTotal(db));
+        if(price != null) price.setTitle("$" + StoreDbHelper.calculateTotal(db));
     }
 }

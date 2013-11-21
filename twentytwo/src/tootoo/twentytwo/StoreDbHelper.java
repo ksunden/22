@@ -24,7 +24,7 @@ public class StoreDbHelper extends SQLiteOpenHelper{
         db.execSQL(StoreItems.SQL_CREATE_ITEMS);
         
         // TODO reformat database insertions
-        db.execSQL("INSERT INTO \"" + StoreItems.TABLE_NAME + "\" VALUES (1, 'Wristbands\n(3 pack)', 10, " + R.drawable.wristbands3 + ", 0);");
+        db.execSQL("INSERT INTO \"" + StoreItems.TABLE_NAME + "\" VALUES (1, 'Wristbands\n(3 pack)', 10, " + R.drawable.wristband3 + ", 0);");
         db.execSQL("INSERT INTO \"" + StoreItems.TABLE_NAME + "\" VALUES (2, 'Wristband', 5, " + R.drawable.wristband1 + ", 0);");
         db.execSQL("INSERT INTO \"" + StoreItems.TABLE_NAME + "\" VALUES (3, 'Signed Puck', 22, " + R.drawable.puck + ", 0);");
         db.execSQL("INSERT INTO \"" + StoreItems.TABLE_NAME + "\" VALUES (4, 'Signed Jersey', 222, " + R.drawable.jersey + ", 0);");
