@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 
 /**
- * This activity contains sample content regardin Jordin's story that will be
+ * This activity contains sample content regarding Jordin's story that will be
  * replaced at a later date.
  * 
  * @author Natalie Davenport and Kyle Sunden
